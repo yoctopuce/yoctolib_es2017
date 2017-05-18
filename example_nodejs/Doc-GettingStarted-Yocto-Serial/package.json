@@ -1,0 +1,9 @@
+{
+  "name": "doc-gettingstarted-yocto-serial",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-Serial example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

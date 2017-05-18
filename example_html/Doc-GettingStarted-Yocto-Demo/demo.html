@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_display.js"></script>
+  <script>
+    var led;
+
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+      alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+    }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anyLed = YLed.FirstLed();
+        if(anyLed) {
+          let module = await anyLed.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      led = YLed.FindLed(serial+".led");
+      if(await led.isOnline()) {
+      document.getElementById('msg').value = '';
+    } else {
+      document.getElementById('msg').value = 'Module not connected';
+    }
+      setTimeout(refresh, 500);
+    }
+
+    window.sw = function(state)
+    {
+      led.set_power(state ? YLed.POWER_ON : YLed.POWER_OFF);
+    };
+
+    startDemo();
+  </script>
+</head>
+<body>
+ Module to use: <input id='serial'>
+ <input id='msg' style='color:red;border:none;' readonly><br>
+ Turn LED <a href='javascript:sw(0);' >OFF</a> / <a href='javascript:sw(1);'>ON</a><br>
+</body>
+</html>

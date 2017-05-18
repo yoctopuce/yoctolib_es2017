@@ -1,0 +1,9 @@
+{
+  "name": "doc-gettingstarted-yocto-millivolt-rx-bnc",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-milliVolt-Rx-BNC example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

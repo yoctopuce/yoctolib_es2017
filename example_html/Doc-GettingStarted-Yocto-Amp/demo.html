@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_current.js"></script>
+  <script>
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+      alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+    }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anysensor = YCurrent.FirstCurrent();
+        if(anysensor) {
+          let module = await anysensor.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      let dcAmp = YCurrent.FindCurrent(serial+".current1");
+      let acAmp = YCurrent.FindCurrent(serial+".current2");
+
+      if (await dcAmp.isOnline()) {
+      document.getElementById('msg').value = '';
+      document.getElementById("dcAmp").value = (await dcAmp.get_currentValue()) + (await dcAmp.get_unit());
+      document.getElementById("acAmp").value = (await acAmp.get_currentValue()) + (await acAmp.get_unit());
+    } else {
+      document.getElementById('msg').value = 'Module not connected';
+    }
+      setTimeout(refresh, 500);
+    }
+
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+DC current : <input id='dcAmp' readonly><br>
+AC current : <input id='acAmp' readonly><br>
+</body>
+</html>

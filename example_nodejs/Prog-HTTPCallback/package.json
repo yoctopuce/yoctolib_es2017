@@ -1,0 +1,8 @@
+{
+  "name": "prog-httpcallback",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Prog-HTTPCallback example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

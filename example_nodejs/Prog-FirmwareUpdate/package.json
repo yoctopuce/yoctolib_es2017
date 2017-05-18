@@ -1,0 +1,8 @@
+{
+  "name": "prog-firmwareupdate",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Prog-FirmwareUpdate example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

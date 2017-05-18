@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_tilt.js"></script>
+  <script src="../../lib/yocto_compass.js"></script>
+  <script src="../../lib/yocto_accelerometer.js"></script>
+  <script src="../../lib/yocto_gyro.js"></script>
+  <script>
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+      alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+    }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anysensor = YTilt.FirstTilt();
+        if(anysensor) {
+          let module = await anysensor.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      let tilt1         = YTilt.FindTilt(serial+".tilt1");
+      let tilt2         = YTilt.FindTilt(serial+".tilt2");
+      let compass       = YCompass.FindCompass(serial+".compass");
+      let gyro          = YGyro.FindGyro(serial+".gyro");
+      let accelerometer = YAccelerometer.FindAccelerometer(serial+".accelerometer");
+      if (await tilt1.isOnline()) {
+      document.getElementById('msg').value = '';
+      document.getElementById("tilt1-val").value    = await tilt1.get_currentValue();
+      document.getElementById("tilt2-val").value    = await tilt2.get_currentValue();
+      document.getElementById("compass-val").value  = await compass.get_currentValue();
+      document.getElementById("gyro-val").value     = await gyro.get_currentValue();
+      document.getElementById("accelerometer-val").value = await accelerometer.get_currentValue();
+    } else {
+      document.getElementById('msg').value = 'Module not connected';
+    }
+      setTimeout(refresh, 500);
+    }
+
+    startDemo();
+  </script>
+  <!-- When going in production, you can generate a self-contained js file using
+
+  jspm build --minify src/demo.js demo-sfx.js
+
+  and replace the 6 lines above by just this one:
+
+  <script src='demo-sfx.js'></script>
+  -->
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+tilt1:   <input id='tilt1-val' readonly> &deg;<br>
+tilt2:   <input id='tilt2-val' readonly></span> &deg;<br>
+compass: <input id='compass-val' readonly></span> &deg;<br>
+gyro:    <input id='gyro-val' readonly></span> &deg;/s<br>
+accelerometer:    <input id='accelerometer-val' readonly></span> g<br>
+</body>
+</html>

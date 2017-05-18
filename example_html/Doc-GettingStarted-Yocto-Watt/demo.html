@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_power.js"></script>
+  <script>
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+        alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+      }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anysensor = YPower.FirstPower();
+        if(anysensor) {
+          let module = await anysensor.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      let power = YPower.FindPower(serial+".power");
+
+      if (await power.isOnline()) {
+        document.getElementById('msg').value = '';
+        document.getElementById("power").value = (await power.get_currentValue()) + (await power.get_unit());
+      } else {
+        document.getElementById('msg').value = 'Module not connected';
+      }
+      setTimeout(refresh, 500);
+    }
+
+    startDemo();  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+Power : <input id='power' readonly><br>
+</body>
+</html>

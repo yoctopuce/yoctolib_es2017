@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Module settings</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script>
+    let module;
+
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+        alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+      }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        module = YModule.FirstModule();
+        if(module) {
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      module = YModule.FindModule(serial);
+      if(await module.isOnline()) {
+        document.getElementById('msg').value = '';
+        document.getElementById('curName').value = await module.get_logicalName();
+      } else {
+        document.getElementById('msg').value = 'Module not connected, check USB cable';
+      }
+      setTimeout(refresh, 500);
+    }
+
+    async function save()
+    {
+      let newname = document.getElementById('newName').value;
+      if (!await YAPI.CheckLogicalName(newname)) {
+        alert('invalid logical name');
+        return;
+      }
+      await module.set_logicalName(newname);
+      await module.saveToFlash();
+    }
+
+    startDemo();
+  </script>
+</head>
+<body>
+  Module to use: <input id='serial'>
+  <input id='msg' style='color:red;border:none;' readonly><br>
+  Current name: <input id='curName' readonly><br>
+  New logical name: <input id='newName'>
+  <a href='javascript:save();'>Save</a>
+</body>
+</html>

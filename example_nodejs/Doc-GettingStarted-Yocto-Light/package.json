@@ -1,0 +1,9 @@
+{
+  "name": "doc-gettingstarted-yocto-light",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-Light example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

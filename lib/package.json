@@ -1,0 +1,30 @@
+{
+  "name": "yoctolib-es2017",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce library for EcmaScript 2017 (fully asynchronous)",
+  "version": "1.10.27515",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yoctopuce/yoctolib_es2017.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yoctopuce/yoctolib_es2017/issues"
+  },
+  "keywords": [
+    "Yoctopuce",
+    "yoctoapi",
+    "EcmaScript",
+    "async"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.js build"
+  },
+  "dependencies": {
+    "ws": "^1.0.1"
+  },
+  "devDependencies": {
+    "semver": "^5.1.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "doc-inventory",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-Inventory example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

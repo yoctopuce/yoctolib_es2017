@@ -1,0 +1,9 @@
+{
+  "name": "doc-gettingstarted-yocto-0-10v-rx",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-0-10V-Rx example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

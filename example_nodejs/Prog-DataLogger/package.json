@@ -1,0 +1,8 @@
+{
+  "name": "prog-datalogger",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Prog-DataLogger example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "doc-modulecontrol",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-ModuleControl example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

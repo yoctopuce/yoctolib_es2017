@@ -1,0 +1,9 @@
+{
+  "name": "doc-gettingstarted-yocto-pwm-tx",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-PWM-Tx example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "doc-gettingstarted-yocto-altimeter",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-Altimeter example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}

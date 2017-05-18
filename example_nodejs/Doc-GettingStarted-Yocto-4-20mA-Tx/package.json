@@ -1,0 +1,9 @@
+{
+  "name": "doc-gettingstarted-yocto-4-20ma-tx",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-4-20mA-Tx example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.27515"
+  }
+}
