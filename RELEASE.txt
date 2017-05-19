@@ -1,1 +1,1 @@
-- New EcmaScript 2017 lib
+- New EcmaScript 2017 library (without JSPM)
