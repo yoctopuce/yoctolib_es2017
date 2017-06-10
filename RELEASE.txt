@@ -1,1 +1,1 @@
-- New EcmaScript 2017 library (without JSPM)
+- Fix check of logical name in set_logicalName

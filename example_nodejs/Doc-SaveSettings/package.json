@@ -3,6 +3,7 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-SaveSettings example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.27564"
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.27778"
   }
 }
