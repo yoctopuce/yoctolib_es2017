@@ -52,10 +52,10 @@ async function startDemo(args)
     await YAPI.FreeAPI();
 }
 
-if(process.argv.length < 5) {
-    console.log("usage: jspm run src/demo.js <serial_number> <current>");
-    console.log("       jspm run src/demo.js <logical_name>  <current>");
-    console.log("       jspm run src/demo.js any <current>              (use any discovered device)");
+if(process.argv.length < 4) {
+    console.log("usage: node demo.js <serial_number> <current>");
+    console.log("       node demo.js <logical_name>  <current>");
+    console.log("       node demo.js any <current>              (use any discovered device)");
 } else {
     startDemo(process.argv.slice(process.argv.length - 2));
 }

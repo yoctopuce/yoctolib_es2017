@@ -51,9 +51,9 @@ async function startDemo(args)
 }
 
 if(process.argv.length < 5) {
-    console.log("usage: jspm run src/demo.js <serial_number> <frequency> <dutyCycle>");
-    console.log("       jspm run src/demo.js <logical_name> <frequency> <dutyCycle>");
-    console.log("       jspm run src/demo.js any <frequency> <dutyCycle>   (use any discovered device)");
+    console.log("usage: node demo.js <serial_number> <frequency> <dutyCycle>");
+    console.log("       node demo.js <logical_name> <frequency> <dutyCycle>");
+    console.log("       node demo.js any <frequency> <dutyCycle>   (use any discovered device)");
     console.log("       <frequency>: integer between 1Hz and 1000000Hz");
     console.log("       <dutyCycle>: floating point number between 0.0 and 100.0");
 } else {

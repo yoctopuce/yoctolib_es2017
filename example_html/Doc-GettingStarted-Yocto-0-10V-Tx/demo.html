@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_voltageoutput.js"></script>
+  <script>
+    let vout1, vout2;
+
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+      alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+    }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anyOut = YVoltageOutput.FirstVoltageOutput();
+        if(anyOut) {
+          let module = await anyOut.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      vout1 = YVoltageOutput.FindVoltageOutput(serial+'.voltageOutput1');
+      vout2 = YVoltageOutput.FindVoltageOutput(serial+'.voltageOutput2');
+
+      if(await vout1.isOnline()) {
+        document.getElementById('msg').value = '';
+      } else {
+        document.getElementById('msg').value = 'Module not connected';
+        setTimeout(refresh, 500);
+      }
+    }
+
+    window.updateVoltage = function(voltage)
+    {
+      vout1.set_dutyCycle(voltage);      // immediate change
+      vout2.dutyCycleMove(voltage,3000); // smooth change
+    };
+
+    startDemo();  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+<a href='javascript:updateVoltage(0);'>Change output voltage to 0 V</a><br>
+<a href='javascript:updateVoltage(0.333);'>Change output voltage to 3.333 V</a><br>
+<a href='javascript:updateVoltage(5);'>Change output voltage to 5.0 V</a><br>
+<a href='javascript:updateVoltage(7.5);'>Change output voltage to 7.5 V</a><br>
+<a href='javascript:updateVoltage(10.0);'>Change output voltage to 10.0 V</a><br>
+</body>
+</html>

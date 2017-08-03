@@ -1,7 +1,7 @@
 "use strict";
 
 require('yoctolib-es2017/yocto_api.js');
-require('yoctolib-es2017/yocto_watchdog.js');
+require('yoctolib-es2017/yocto_voltageoutput.js');
 
 async function startDemo(args)
 {
@@ -14,27 +14,29 @@ async function startDemo(args)
         console.log('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
         return;
     }
-
-    // Select the watchdog to use
+    
+    // Select the module to use
     let target;
     if(args[0] == "any") {
-        let anyrelay = YWatchdog.FirstWatchdog();
-        if (anyrelay == null) {
+        let anyOut = YVoltageOutput.FirstVoltageOutput();
+        if (anyOut == null) {
             console.log("No module connected (check USB cable)\n");
             process.exit(1);
         }
-        let module = await anyrelay.get_module();
+        let module = await anyOut.get_module();
         target = await module.get_serialNumber();
     } else {
         target = args[0];
     }
+    let voltage = args[1];
+    let vout1 = YVoltageOutput.FindVoltageOutput(target+'.voltageOutput1');
+    let vout2 = YVoltageOutput.FindVoltageOutput(target+'.voltageOutput2');
 
-    // Enable/disable watchdog as requested
-    let watchdog = YWatchdog.FindWatchdog(target + ".watchdog1");
-    if(await watchdog.isOnline()) {
-        if(args[1] == 'on') await watchdog.set_running(YWatchdog.RUNNING_ON);
-        if(args[1] == 'off') await watchdog.set_running(YWatchdog.RUNNING_OFF);
-        if(args[1] == 'reset') await watchdog.resetWatchdog();
+    if(await vout1.isOnline()) {
+        // output 1 : immediate change
+        await vout1.set_outputVoltage(voltage);
+        // output 2 : smooth change
+        await vout2.voltageMove(voltage,3000);
     } else {
         console.log("Module not connected (check identification and USB cable)\n");
     }
@@ -43,9 +45,10 @@ async function startDemo(args)
 }
 
 if(process.argv.length < 4) {
-    console.log("usage: node demo.js <serial_number> [ on | off | reset ]");
-    console.log("       node demo.js <logical_name> [ on | off | reset ]");
-    console.log("       node demo.js any [ on | off | reset ]           (use any discovered device)");
+    console.log("usage: node demo.js <serial_number> <voltage>");
+    console.log("       node demo.js <logical_name>  <voltage>");
+    console.log("       node demo.js any <voltage>    (use any discovered device)");
+    console.log("       <voltage>: floating point number between 0.0 and 10.000");
 } else {
     startDemo(process.argv.slice(process.argv.length - 2));
 }

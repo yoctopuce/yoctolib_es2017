@@ -53,13 +53,13 @@ async function startDemo(args)
     await YAPI.FreeAPI();
 }
 
-if(process.argv.length < 5) {
-    console.log("usage: jspm run src/demo.js <serial_number> [ color | rgb ]");
-    console.log("       jspm run src/demo.js <logical_name> [ color | rgb ]");
-    console.log("       jspm run src/demo.js any [ color | rgb ]       (use any discovered device)");
+if(process.argv.length < 4) {
+    console.log("usage: node demo.js <serial_number> [ color | rgb ]");
+    console.log("       node demo.js <logical_name> [ color | rgb ]");
+    console.log("       node demo.js any [ color | rgb ]       (use any discovered device)");
     console.log("Eg.");
-    console.log("   jspm run src/demo.js any FF1493 ");
-    console.log("   jspm run src/demo.js YRGBLED1-123456 red");
+    console.log("   node demo.js any FF1493 ");
+    console.log("   node demo.js YRGBLED1-123456 red");
 } else {
     startDemo(process.argv.slice(process.argv.length - 2));
 }

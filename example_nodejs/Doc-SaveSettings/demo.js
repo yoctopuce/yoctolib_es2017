@@ -32,8 +32,8 @@ async function startDemo(args)
     await YAPI.FreeAPI();
 }
 
-if(process.argv.length < 3) {
-    console.log("usage: jspm run src/demo.js <serial> [newLogicalName]");
+if(process.argv.length < 2) {
+    console.log("usage: node demo.js <serial> [newLogicalName]");
 } else {
-    startDemo(process.argv.slice(process.argv.length - 3));
+    startDemo(process.argv.slice(2));
 }
