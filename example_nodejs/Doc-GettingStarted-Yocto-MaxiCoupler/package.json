@@ -4,6 +4,6 @@
   "description": "Yoctopuce Doc-GettingStarted-Yocto-MaxiCoupler example",
   "dependencies": {
     "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.28296"
+    "yoctolib-es2017": "^1.10.28564"
   }
 }
