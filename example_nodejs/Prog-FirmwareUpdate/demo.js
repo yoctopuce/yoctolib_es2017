@@ -30,7 +30,7 @@ async function upgradeSerialList(allserials)
                 status = newstatus;
             } while (status < 100 && status >= 0);
             if (status < 0) {
-                console.log('Firmware Update failed: ' + update.get_progressMessage());
+                console.log('Firmware Update failed: ' + await update.get_progressMessage());
                 process.exit(1);
             } else {
                 if (await module.isOnline()) {
