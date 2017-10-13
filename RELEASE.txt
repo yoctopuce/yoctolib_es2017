@@ -1,1 +1,2 @@
-- Add YSnoopingRecord class
+- Fix SMS support
+- Add new methods in YPwmInput
