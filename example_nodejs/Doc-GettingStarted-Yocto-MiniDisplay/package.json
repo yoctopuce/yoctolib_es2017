@@ -4,6 +4,6 @@
   "description": "Yoctopuce Doc-GettingStarted-Yocto-MiniDisplay example",
   "dependencies": {
     "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.28878"
+    "yoctolib-es2017": "^1.10.29281"
   }
 }
