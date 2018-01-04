@@ -1,9 +1,1 @@
-- Add methods to YColorLedCluster class
-- Add support for WebSocket tunelling and WebSocket subdomains
-- Add Secure WebSocket endpoints
-- Add authentication parameter to RegisterWebSocketCallback
-- Improve robustness of WebSocket connection recovery in case of network outage
-- Improve reporting of HTTP 401 status code for HTTP authentication
-- Fix YAPI.TestHub function
-- Fix infinite retry timeout in YAPI.RegisterHub
-- Fix attribute retrieval immediately after call to YModule.set_allSettings()
+- Add YMultiCellWeighScale class
