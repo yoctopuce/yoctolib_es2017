@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_multicellweighscale.js"></script>
+  <script>
+    let sensor = null;
+
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+      alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+    }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anysensor = YMultiCellWeighScale.FirstMultiCellWeighScale();
+        if(anysensor) {
+          let module = await anysensor.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      sensor = YMultiCellWeighScale.FindMultiCellWeighScale(serial+".MultiCellWeighScale");
+
+      if (await sensor.isOnline()) {
+        if(await sensor.get_excitation() == YMultiCellWeighScale.EXCITATION_OFF) {
+          await sensor.set_excitation(YMultiCellWeighScale.EXCITATION_AC);
+        }
+        document.getElementById('msg').value = '';
+        document.getElementById("sensor-val").value = (await sensor.get_currentValue()) + (await sensor.get_unit());
+      } else {
+        document.getElementById('msg').value = 'Module not connected';
+      }
+      setTimeout(refresh, 500);
+    }
+
+    window.tare = function()
+    {
+      sensor.tare();
+    };
+
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+Weight : <input id='sensor-val' readonly><a href='javascript:tare();' >Tare</a><br>
+</body>
+</html>
