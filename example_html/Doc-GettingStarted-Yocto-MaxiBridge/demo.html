@@ -33,7 +33,7 @@
           document.getElementById('serial').value = serial;
         }
       }
-      sensor = YMultiCellWeighScale.FindMultiCellWeighScale(serial+".MultiCellWeighScale");
+      sensor = YMultiCellWeighScale.FindMultiCellWeighScale(serial+".multiCellWeighScale");
 
       if (await sensor.isOnline()) {
         if(await sensor.get_excitation() == YMultiCellWeighScale.EXCITATION_OFF) {

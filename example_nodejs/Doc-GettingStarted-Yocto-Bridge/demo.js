@@ -31,7 +31,7 @@ async function startDemo()
         }
     }
     console.log('Using device '+serial);
-    sensor = YWeighScale.FindWeighScale(serial+".WeighScale");
+    sensor = YWeighScale.FindWeighScale(serial+".weighScale1");
 
     if (await sensor.isOnline()) {
         // On startup, enable excitation and tare weigh scale

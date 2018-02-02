@@ -33,7 +33,7 @@
           document.getElementById('serial').value = serial;
         }
       }
-      sensor = YWeighScale.FindWeighScale(serial+".WeighScale");
+      sensor = YWeighScale.FindWeighScale(serial+".weighScale1");
 
       if (await sensor.isOnline()) {
         if(await sensor.get_excitation() == YWeighScale.EXCITATION_OFF) {
