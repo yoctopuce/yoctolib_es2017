@@ -1,7 +1,7 @@
 {
-  "name": "doc-gettingstarted-yocto-co2",
+  "name": "prog-draw-bitmap",
   "author": "Yoctopuce",
-  "description": "Yoctopuce Doc-GettingStarted-Yocto-CO2 example",
+  "description": "Yoctopuce Prog-Display-DrawBitmap example",
   "dependencies": {
     "ws": "^1.0.1",
     "yoctolib-es2017": "^1.10.30008"

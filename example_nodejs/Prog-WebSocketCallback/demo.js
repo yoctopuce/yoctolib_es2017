@@ -34,7 +34,7 @@ async function WebSocketCallbackHandler(ws)
   console.log('Incoming WebSocket connection!');
   let errmsg = new YErrorMsg();
   let yctx = new YAPIContext();
-  if(await yctx.RegisterHubWebSocketCallback(ws, errmsg) != YAPI.SUCCESS) {
+  if(await yctx.RegisterHubWebSocketCallback(ws, errmsg, 'MY-WEBSOCKET-PASSWORD!') != YAPI.SUCCESS) {
     console.log('WebSocket callback error: ' + errmsg);
     yctx.FreeAPI();
     return;

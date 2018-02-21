@@ -1,1 +1,4 @@
-- Add support and examples for Yocto-Bridge and Yocto-MaxiBridge
+- Add password to WebSocket callback example
+- fix detection of stalled connection during WebSocket forwarding
+- Add drawbitmap example
+- commit support for compressed requests (for testing)
