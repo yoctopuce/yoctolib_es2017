@@ -1,4 +1,3 @@
 - Add password to WebSocket callback example
-- fix detection of stalled connection during WebSocket forwarding
-- Add drawbitmap example
-- commit support for compressed requests (for testing)
+- Add draw bitmap example
+- Fix device arrival/removal callbacks
