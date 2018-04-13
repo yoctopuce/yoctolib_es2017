@@ -1,3 +1,1 @@
-- Add password to WebSocket callback example
-- Add draw bitmap example
-- Fix device arrival/removal callbacks
+- Add new PWMOutput methods
