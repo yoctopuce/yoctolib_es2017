@@ -1,1 +1,4 @@
+- Enable persistent connection for node http mode
 - Add new PWMOutput methods
+- Improve function documentation in French for PWM-Tx
+- Fix Modbus ASCII message handling

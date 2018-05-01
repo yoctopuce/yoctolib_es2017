@@ -4,6 +4,6 @@
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Watt example",
   "dependencies": {
     "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.30598"
+    "yoctolib-es2017": "^1.10.30760"
   }
 }
