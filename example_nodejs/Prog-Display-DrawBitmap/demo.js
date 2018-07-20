@@ -3,18 +3,18 @@
 require('yoctolib-es2017/yocto_api.js');
 require('yoctolib-es2017/yocto_display.js');
 
-var  disp=null;
-var  lastSerial ='';
-var  h=0;
-var  w=0;
-var  l0=null;
-var  max_iteration = 50;
-var  targetX =  0.834555980181972;
-var  targetY  = 0.204552998862566;
-var  bytesPerLines = 0;
-var  zoom    = 1;
-var  distance = 1;
-var  data = [];
+var disp=null;
+var lastSerial ='';
+var h=0;
+var w=0;
+var l0=null;
+var max_iteration = 50;
+var targetX =  0.834555980181972;
+var targetY  = 0.204552998862566;
+var bytesPerLines = 0;
+var zoom    = 1;
+var distance = 1;
+var data = [];
 
 async function startDemo()
 {

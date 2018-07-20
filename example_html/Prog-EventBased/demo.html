@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Event-based programming example</title>
+    <script src="../../lib/yocto_api.js"></script>
+    <script src="../../lib/yocto_anbutton.js"></script>
+    <script>
+        async function valueChangeCallBack(obj_fct, str_value)
+        {
+            // the field to update is stored in the function userData
+            let info = await obj_fct.get_userData();
+            document.getElementById(info.name).innerHTML = str_value+' '+info.unit+' (new value)';
+        }
+
+        async function timedReportCallBack(obj_fct, obj_measure)
+        {
+            // the field to update is stored in the function userData
+            let info = await obj_fct.get_userData();
+            document.getElementById(info.name).innerHTML = ''+obj_measure.get_averageValue()+' '+info.unit+' (timed report)';
+        }
+
+        async function configChangeCallBack(module)
+        {
+            // the field to update is stored in the function userData
+            let serial = await module.get_serialNumber();
+            let time = new Date();
+            document.getElementById(serial+'confChg').innerHTML =
+                ('0'+time.getHours()).slice(-2) + ":" + ('0'+time.getMinutes()).slice(-2) + ":" + ('0'+time.getSeconds()).slice(-2);
+        }
+
+        async function deviceArrival(module)
+        {
+            let serial = await module.get_serialNumber();
+            let div = document.getElementById(serial);
+            if(div) {
+                div.style.display = "block";
+                return;
+            }
+            document.getElementById('modules').innerHTML += "<div id='"+serial+"'>Module "+serial+"<br></div>";
+            await module.registerConfigChangeCallback(configChangeCallBack);
+
+            // First solution: look for a specific type of function (eg. anButton)
+            let fctcount = await module.functionCount();
+            for (let i = 0; i < fctcount; i++)
+            {
+                let hardwareId = serial + "." + await module.functionId(i);
+                if (hardwareId.indexOf(".anButton") > 0) {
+                    document.getElementById(serial).innerHTML += "- "+hardwareId+' : <span id="'+hardwareId+'"></span><br>';
+                    let anButton = YAnButton.FindAnButton(hardwareId);
+                    await anButton.set_userData({name:hardwareId,unit:''});
+                    await anButton.registerValueCallback(valueChangeCallBack);
+                }
+            }
+
+            // Alternate solution: register any kind of sensor on the device
+            let sensor = YSensor.FirstSensor();
+            while(sensor) {
+                let module = await sensor.get_module();
+                if(await module.get_serialNumber() === serial) {
+                    let hardwareId = await sensor.get_hardwareId();
+                    document.getElementById(serial).innerHTML += "- "+hardwareId+' : <span id="'+hardwareId+'"></span><br>';
+                    await sensor.set_userData({name:hardwareId,unit:sensor.get_unit()});
+                    await sensor.registerValueCallback(valueChangeCallBack);
+                    await sensor.registerTimedReportCallback(timedReportCallBack);
+                }
+                sensor = sensor.nextSensor();
+            }
+
+            document.getElementById(serial).innerHTML += '- last config change: <span id="'+serial+'confChg"></span><br>';
+        }
+
+        async function deviceRemoval(module)
+        {
+            let serial = await module.get_serialNumber();
+            document.getElementById(serial).style.display = "none";
+        }
+
+        function handleHotPlug()
+        {
+            YAPI.SetTimeout(handleHotPlug,1000);
+        }
+
+        async function startDemo()
+        {
+            await YAPI.LogUnhandledPromiseRejections();
+            await YAPI.DisableExceptions();
+
+            // Setup the API to use the VirtualHub on local machine
+            let errmsg = new YErrorMsg();
+            if (await YAPI.RegisterHub('ws://127.0.0.1:4444', errmsg) !== YAPI.SUCCESS) {
+                alert('Cannot contact VirtualHub on 127.0.0.1: ' + errmsg.msg);
+            }
+
+            await YAPI.RegisterDeviceArrivalCallback(deviceArrival);
+            await YAPI.RegisterDeviceRemovalCallback(deviceRemoval);
+            handleHotPlug()
+        }
+
+        startDemo();
+    </script>
+</head>
+<body>
+Connected modules:<br>
+<div id='modules'></div>
+</body>
+</html>

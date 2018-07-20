@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>USB Ohmmeter</title>
+<style>
+BODY {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+A {
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    background-color: #f0f0f0;
+    text-decoration : none;
+    font-size: small;
+    padding: 0 8px 0 8px;
+    border-radius: 5px;
+}
+</style>
+<script src="../../lib/yocto_api.js"></script>
+<script src="../../lib/yocto_genericsensor.js"></script>
+<script src="../../lib/yocto_weighscale.js"></script>
+<script>
+    var sensor1;
+
+    async function startDemo()
+    {
+        await YAPI.LogUnhandledPromiseRejections();
+        await YAPI.DisableExceptions();
+
+        // Setup the API to use the VirtualHub on local machine
+        let errmsg = new YErrorMsg();
+        if(await YAPI.RegisterHub('127.0.0.1', errmsg) !== YAPI.SUCCESS) {
+            alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+        }
+        refresh();
+    }
+
+    async function refresh()
+    {
+        let serial = document.getElementById('serial').value;
+        if(serial === '') {
+            // by default use any connected module suitable for the demo
+            let anysensor = YWeighScale.FirstWeighScale();
+            if(anysensor) {
+                let module = await anysensor.module();
+                serial = await module.get_serialNumber();
+                document.getElementById('serial').value = serial;
+                await anysensor.set_zeroTracking(0);
+                await anysensor.set_excitation(YWeighScale.EXCITATION_AC);
+                await module.saveToFlash();
+            }
+        }
+        sensor1 = YGenericSensor.FindGenericSensor(serial+".genericSensor1");
+        if (await sensor1.isOnline()) {
+            document.getElementById('msg').value = '';
+            let ref = parseFloat(document.getElementById("reference").value)*1000;
+            let wire = parseFloat(document.getElementById("probe").value);
+            let bias = await sensor1.get_signalBias();
+            let sig = await sensor1.get_signalValue();
+            let rng = (await sensor1.get_signalRange()).match(/\d+(\.\d+|)/g);
+            let maxsig = rng[1];
+            let res = (sig < 0.99*maxsig ? Math.round(ref * 2000 * sig / (1000000 - sig) - 1000 * wire) / 1000 : 'n.c.');
+            if(document.getElementById("maxval").value === '') {
+                let maxval = Math.round(ref * 1.818 * maxsig / (1000000 - maxsig));
+                document.getElementById("maxval").value = maxval / 1000;
+            }
+            document.getElementById("bias").value = bias;
+            document.getElementById("measure").value = res;
+        } else {
+            document.getElementById('msg').value = 'Module not connected';
+        }
+        setTimeout(refresh, 500);
+    }
+
+    async function setRange()
+    {
+        if (await sensor1.isOnline()) {
+            let ref = parseFloat(document.getElementById("reference").value)*1000;
+            let maxval = parseFloat(document.getElementById("maxval").value)*1000;
+            let maxsig = Math.ceil(maxval * 1100000 / (maxval + 2*ref));
+            let module = await sensor1.get_module();
+            await sensor1.set_signalRange("0..."+maxsig);
+            await module.saveToFlash();
+        }
+    }
+
+    async function tare()
+    {
+        if (await sensor1.isOnline()) {
+            let module = await sensor1.get_module();
+            let sig = await sensor1.get_signalValue();
+            let bias = await sensor1.get_signalBias();
+            await sensor1.set_signalBias(sig+bias);
+            await module.saveToFlash();
+        }
+    }
+
+    async function setProbe()
+    {
+        document.getElementById("probe").value = document.getElementById("measure").value;
+    }
+
+    startDemo();
+</script>
+</head>
+<body>
+<h1>USB Ohmmeter</h1>
+<div>Module to use: <input id='serial'></div>
+<input id='msg' style='color:red;border:none;' readonly><br>
+<table>
+    <tr><td>Reference resistors:&nbsp;</td>
+        <td><input id='reference' style='text-align: right;' size="10" value="1000"> KOhms</td></tr>
+    <tr><td>Measure range:&nbsp;</td>
+        <td>0...<input id='maxval' style='text-align: right;' size="6"> KOhms</td>
+        <td><a href="javascript:setRange();">apply</a></td></tr>
+    <tr><td>Zero offset:&nbsp;</td>
+        <td><input id='bias' style='text-align: right;' size="10" value="0"> uV/V</td>
+        <td><a href="javascript:tare();">tare</a></td></tr>
+    <tr><td>Probe resistance:&nbsp;</td>
+        <td><input id='probe' style='text-align: right;' size="10" value="0"> Ohms</td>
+        <td><a href="javascript:setProbe();">set</a></td></tr>
+    <tr><td>Measured resistance:&nbsp;</td>
+        <td><input id='measure' style='text-align: right;' size="10" readonly> Ohms</td></tr>
+</table>
+</body>
+</html>

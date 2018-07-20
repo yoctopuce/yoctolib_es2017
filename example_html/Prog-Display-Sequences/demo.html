@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <script src="../../lib/yocto_api.js"></script>
+    <script src="../../lib/yocto_display.js"></script>
+    <script>
+        async function startDemo()
+        {
+            await YAPI.LogUnhandledPromiseRejections();
+            await YAPI.DisableExceptions();
+
+            // Setup the API to use the VirtualHub on local machine
+            let errmsg = new YErrorMsg();
+            if (await YAPI.RegisterHub('ws://127.0.0.1:4444', errmsg) !== YAPI.SUCCESS) {
+                alert('Cannot contact VirtualHub on 127.0.0.1: ' + errmsg.msg);
+            }
+
+            // Select specified device, or use first available one
+            let serial = document.getElementById('serial').value;
+            if (serial === '') {
+                // by default use any connected module suitable for the demo
+                let anydiplay = YDisplay.FirstDisplay();
+                if (anydiplay) {
+                    let module = await anydiplay.module();
+                    serial = await module.get_serialNumber();
+                    document.getElementById('serial').value = serial;
+                }
+            }
+            let disp = YDisplay.FindDisplay(serial + ".display");
+
+            // retrieve the display size
+            let w = await disp.get_displayWidth();
+            let h = await disp.get_displayHeight();
+
+            // reteive the first layer
+            let l0 = await disp.get_displayLayer(0);
+            let count = 8;
+            let coord = new Array(2*count);
+            // precompute the "leds" position
+            let ledwidth = (w / count);
+            for (let i=0 ; i<count ;i++)
+            {
+                coord[i] = i *ledwidth;
+                coord[2*count-i-2] = coord[i] ;
+            }
+
+            let framesCount = 2*count-2;
+
+            // clean up
+            await disp.resetAll();
+
+            // start recording
+            await disp.newSequence();
+
+            // build one loop for recording
+            for (let i=0;i<framesCount;i++)
+            {
+                await l0.selectColorPen(0);
+                await l0.drawBar(coord[(i+framesCount-1) % framesCount], h-1,coord[(i+framesCount-1) % framesCount]+ledwidth, h-4);
+                await l0.selectColorPen(0xffffff);
+                await l0.drawBar(coord[i], h-1, coord[i]+ledwidth, h-4);
+                await disp.pauseSequence(50);  // records a 50ms pause.
+            }
+            // self-call : causes an endless looop
+            await disp.playSequence("K2000.seq");
+            // stop recording and save to device filesystem
+            await disp.saveSequence("K2000.seq");
+
+            // play the sequence
+            await disp.playSequence("K2000.seq");
+        }
+
+        startDemo();
+    </script>
+</head>
+<body>
+Module to use:     <input id='serial'><span style='color:red;border:none;'  id='msg'></span><br>
+This animation in running in background, it
+will continue even if you leave this page.
+</body>
+</html>

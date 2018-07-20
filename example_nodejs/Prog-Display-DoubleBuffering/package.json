@@ -1,0 +1,9 @@
+{
+  "name": "prog-display-doublebuffering",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Prog-Display-DoubleBuffering example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.31315"
+  }
+}

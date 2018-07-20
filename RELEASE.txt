@@ -1,1 +1,6 @@
-- Add GPS/Leaflet/OpenStreetMap example
+EcmaScript v1.10.31315
+
+- Add USB cable tester code
+- Add some missing examples
+- Add support for phaseMove in PWMOutput class
+- Add support for config change notifications
