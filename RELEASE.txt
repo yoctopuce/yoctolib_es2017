@@ -1,6 +1,6 @@
-EcmaScript v1.10.31315
+EcmaScript v1.10.31701
 
-- Add USB cable tester code
-- Add some missing examples
-- Add support for phaseMove in PWMOutput class
-- Add support for config change notifications
+- Add methods do change DeviceListValidity and CacheValidity
+- Add support for ConfigChange callbacks
+- Improve error reporting for YAPI.RegisterHub and YAPI.TestHub
+- Improve error recovery during DataSet.loadMore
