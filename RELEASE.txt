@@ -1,6 +1,4 @@
-EcmaScript v1.10.31701
+EcmaScript v1.10.31874
 
-- Add methods do change DeviceListValidity and CacheValidity
-- Add support for ConfigChange callbacks
-- Improve error reporting for YAPI.RegisterHub and YAPI.TestHub
-- Improve error recovery during DataSet.loadMore
+- Fix YAPI.GetAllBootLoaders and YAPI.CheckFirmware functions
+- Add Doc-GettingStarted-Yocto-Color-V2 example
