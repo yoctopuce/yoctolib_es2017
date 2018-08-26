@@ -1,4 +1,3 @@
-EcmaScript v1.10.31874
+EcmaScript v1.10.31897
 
-- Fix YAPI.GetAllBootLoaders and YAPI.CheckFirmware functions
-- Add Doc-GettingStarted-Yocto-Color-V2 example
+- Add method set_hslColorAtPowerOn in YColorLedCluster class
