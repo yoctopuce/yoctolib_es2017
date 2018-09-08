@@ -1,3 +1,4 @@
-EcmaScript v1.10.31897
+EcmaScript v1.10.32027
 
-- Add method set_hslColorAtPowerOn in YColorLedCluster class
+- Fix cache validity bug (cache no more refreshed) since build 31770
+- Fix unit display in Prog-EventBased example

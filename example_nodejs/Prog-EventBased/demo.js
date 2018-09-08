@@ -49,7 +49,7 @@ async function deviceArrival(module)
         let module = await sensor.get_module();
         if(await module.get_serialNumber() === serial) {
             let hardwareId = await sensor.get_hardwareId();
-            await sensor.set_userData({name:hardwareId,unit:sensor.get_unit()});
+            await sensor.set_userData({name:hardwareId,unit:await sensor.get_unit()});
             await sensor.registerValueCallback(valueChangeCallBack);
             await sensor.registerTimedReportCallback(timedReportCallBack);
         }

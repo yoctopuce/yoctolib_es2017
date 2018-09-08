@@ -60,7 +60,7 @@
                 if(await module.get_serialNumber() === serial) {
                     let hardwareId = await sensor.get_hardwareId();
                     document.getElementById(serial).innerHTML += "- "+hardwareId+' : <span id="'+hardwareId+'"></span><br>';
-                    await sensor.set_userData({name:hardwareId,unit:sensor.get_unit()});
+                    await sensor.set_userData({name:hardwareId,unit:await sensor.get_unit()});
                     await sensor.registerValueCallback(valueChangeCallBack);
                     await sensor.registerTimedReportCallback(timedReportCallBack);
                 }
