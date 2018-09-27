@@ -1,4 +1,5 @@
-EcmaScript v1.10.32027
+EcmaScript v1.10.32391
 
-- Fix cache validity bug (cache no more refreshed) since build 31770
-- Fix unit display in Prog-EventBased example
+- Add support for beacon change callback
+- Fix missing definition of YDisplayLayer.ALIGN_XXXXX
+- Fix lost notifications/timedReports when crossing split across network frames

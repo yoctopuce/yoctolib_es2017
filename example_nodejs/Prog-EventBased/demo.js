@@ -25,11 +25,20 @@ async function configChangeCallBack(module)
     console.log(serial+': configuration change');
 }
 
+async function beaconCallBack(module, beacon)
+{
+    // the field to update is stored in the function userData
+    let serial = await module.get_serialNumber();
+    let time = new Date();
+    console.log(serial+': beacon changed to '+ beacon);
+}
+
 async function deviceArrival(module)
 {
     let serial = await module.get_serialNumber();
     console.log('Device arrival: '+serial);
     await module.registerConfigChangeCallback(configChangeCallBack);
+    await module.registerBeaconCallback(beaconCallBack);
 
     // First solution: look for a specific type of function (eg. anButton)
     let fctcount = await module.functionCount();

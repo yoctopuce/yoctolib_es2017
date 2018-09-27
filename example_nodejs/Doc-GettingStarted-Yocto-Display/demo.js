@@ -43,7 +43,7 @@ async function startDemo() {
     // reteive the first layer
     let l0 = await disp.get_displayLayer(0);
     // display a text in the middle of the screen
-    await l0.drawText(w / 2, h / 2, l0.ALIGN_CENTER, "Hello world!");
+    await l0.drawText(w / 2, h / 2, YDisplayLayer.ALIGN_CENTER , "Hello world!");
 
     // visualize each corner
     await l0.moveTo(0, 5);
