@@ -1,5 +1,3 @@
-EcmaScript v1.10.32391
+EcmaScript v1.10.32675
 
-- Add support for beacon change callback
-- Fix missing definition of YDisplayLayer.ALIGN_XXXXX
-- Fix lost notifications/timedReports when crossing split across network frames
+- Fix YFunction.FirstFunction and YFunction.FindFunction methods that were not working with functions that inherit from YSensors.

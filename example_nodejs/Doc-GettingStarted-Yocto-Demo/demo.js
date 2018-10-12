@@ -1,3 +1,17 @@
+/*********************************************************************
+ *
+ *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *
+ *  An example that show how to use a  Yocto-Demo
+ *
+ *  You can find more information on our web site:
+ *   Yocto-Demo documentation:
+ *      https://www.yoctopuce.com/EN/products/yocto-demo/doc.html
+ *   EcmaScript API Reference:
+ *      https://www.yoctopuce.com/EN/doc/reference/yoctolib-ecmascript-EN.html
+ *
+ *********************************************************************/
+
 "use strict";
 
 require('yoctolib-es2017/yocto_api.js');

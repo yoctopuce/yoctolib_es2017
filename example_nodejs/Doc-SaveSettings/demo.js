@@ -1,3 +1,15 @@
+/*********************************************************************
+ *
+ *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *
+ *  Doc-SaveSettings example
+ *
+ *  You can find more information on our web site:
+ *   EcmaScript API Reference:
+ *      https://www.yoctopuce.com/EN/doc/reference/yoctolib-ecmascript-EN.html
+ *
+ *********************************************************************/
+
 "use strict";
 
 require('yoctolib-es2017/yocto_api.js');

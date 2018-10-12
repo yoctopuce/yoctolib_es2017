@@ -1,3 +1,17 @@
+/*********************************************************************
+ *
+ *  $Id: demo.js 32632 2018-10-10 14:15:36Z seb $
+ *
+ *  An example that show how to use a  Yocto-Color-V2
+ *
+ *  You can find more information on our web site:
+ *   Yocto-Color-V2 documentation:
+ *      https://www.yoctopuce.com/EN/products/yocto-color-v2/doc.html
+ *   EcmaScript API Reference:
+ *      https://www.yoctopuce.com/EN/doc/reference/yoctolib-ecmascript-EN.html
+ *
+ *********************************************************************/
+
 "use strict";
 
 require('yoctolib-es2017/yocto_api.js');
