@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
  *
  *  An example that show how to use a  Yocto-Amp
  *
@@ -54,8 +54,10 @@ async function startDemo()
 async function refresh()
 {
     if (await dcAmp.isOnline()) {
-        console.log('DC current : '+(await dcAmp.get_currentValue()) + (await dcAmp.get_unit()));
-        console.log('AC current : '+(await acAmp.get_currentValue()) + (await acAmp.get_unit()));
+        console.log('DC current : '+(await dcAmp.get_currentValue())
+            + (await dcAmp.get_unit()));
+        console.log('AC current : '+(await acAmp.get_currentValue())
+            + (await acAmp.get_unit()));
     } else {
         console.log('Module not connected');
     }

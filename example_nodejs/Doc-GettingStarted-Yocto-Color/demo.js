@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
  *
  *  An example that show how to use a  Yocto-Color
  *
@@ -28,7 +28,7 @@ async function startDemo(args)
         console.log('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
         return;
     }
-    
+
     // Select the relay to use
     let target;
     if(args[0] == "any") {
@@ -70,7 +70,7 @@ async function startDemo(args)
 if(process.argv.length < 4) {
     console.log("usage: node demo.js <serial_number> [ color | rgb ]");
     console.log("       node demo.js <logical_name> [ color | rgb ]");
-    console.log("       node demo.js any [ color | rgb ]       (use any discovered device)");
+    console.log("       node demo.js any [ color | rgb ]");
     console.log("Eg.");
     console.log("   node demo.js any FF1493 ");
     console.log("   node demo.js YRGBLED1-123456 red");

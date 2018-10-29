@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32632 2018-10-10 14:15:36Z seb $
+ *  $Id: demo.js 32714 2018-10-19 15:31:54Z seb $
  *
  *  An example that show how to use a  Yocto-Serial
  *
@@ -82,7 +82,6 @@ async function refresh() {
     }
     setTimeout(refresh, 500);
 }
-
 
 startDemo();
 

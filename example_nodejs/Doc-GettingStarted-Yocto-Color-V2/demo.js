@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32632 2018-10-10 14:15:36Z seb $
+ *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
  *
  *  An example that show how to use a  Yocto-Color-V2
  *
@@ -55,7 +55,6 @@ async function startDemo(args)
     else
         color = parseInt(args[1],16);
 
-
     //configure led cluster
     let nb_leds = 62;
     await ledCluster.set_activeLedCount(nb_leds);
@@ -76,7 +75,7 @@ async function startDemo(args)
 if(process.argv.length < 4) {
     console.log("usage: node demo.js <serial_number> [ color | rgb ]");
     console.log("       node demo.js <logical_name> [ color | rgb ]");
-    console.log("       node demo.js any [ color | rgb ]       (use any discovered device)");
+    console.log("       node demo.js any [ color | rgb ]");
     console.log("Eg.");
     console.log("   node demo.js any FF1493 ");
     console.log("   node demo.js YRGBLED1-123456 red");

@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
  *
  *  An example that show how to use a  Yocto-Bridge
  *
@@ -61,7 +61,8 @@ async function startDemo()
 async function refresh()
 {
     if (await sensor.isOnline()) {
-        console.log('Weight : '+(await sensor.get_currentValue()) + (await sensor.get_unit()));
+        console.log('Weight : '+(await sensor.get_currentValue())
+            + (await sensor.get_unit()));
     } else {
         console.log('Module not connected');
     }

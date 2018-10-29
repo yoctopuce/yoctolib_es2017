@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
  *
  *  An example that show how to use a  Yocto-0-10V-Rx
  *
@@ -54,8 +54,10 @@ async function startDemo()
 async function refresh()
 {
     if (await sensor1.isOnline()) {
-        console.log('Input 1: '+(await sensor1.get_currentValue()) + (await sensor1.get_unit()));
-        console.log('Input 2: '+(await sensor2.get_currentValue()) + (await sensor2.get_unit()));
+        console.log('Input 1: '+(await sensor1.get_currentValue())
+            + (await sensor1.get_unit()));
+        console.log('Input 2: '+(await sensor2.get_currentValue())
+            + (await sensor2.get_unit()));
     } else {
         console.log('Module not connected');
     }

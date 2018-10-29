@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
  *
  *  An example that show how to use a  Yocto-IO
  *
@@ -61,9 +61,12 @@ async function startDemo() {
 
 async function refresh() {
     if (await io.isOnline()) {
-        outputdata = (outputdata + 1) % 4; // cycle ouput 0..3
-        await io.set_portState(outputdata); // We could have used set_bitState as well
-        let inputdata = await io.get_portState(); // read port values
+        // cycle ouput 0..3
+        outputdata = (outputdata + 1) % 4;
+        // We could have used set_bitState as well
+        await io.set_portState(outputdata);
+        // read port values
+        let inputdata = await io.get_portState();
         let line = "";  // display port value as binary
         for (let i = 0; i < 4; i++) {
             if ((inputdata & (8 >> i)) > 0) {

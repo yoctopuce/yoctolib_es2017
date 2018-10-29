@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
  *
  *  An example that show how to use a  Yocto-GPS
  *
@@ -57,7 +57,8 @@ async function refresh()
     } else if (await gps.get_isFixed() != YGps.ISFIXED_TRUE) {
         console.log('fixing...');
     } else {
-        console.log('Position : '+(await gps.get_latitude()) + ' ' + (await gps.get_longitude()));
+        console.log('Position : '+(await gps.get_latitude())
+            + ' ' + (await gps.get_longitude()));
     }
     setTimeout(refresh, 500);
 }

@@ -1,3 +1,3 @@
-EcmaScript v1.10.32675
+EcmaScript v1.10.32759
 
-- Fix YFunction.FirstFunction and YFunction.FindFunction methods that were not working with functions that inherit from YSensors.
+- Fix incompatibility with package that hook the Array.from function

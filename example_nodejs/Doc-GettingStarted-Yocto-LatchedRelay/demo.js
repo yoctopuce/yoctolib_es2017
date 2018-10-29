@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
  *
  *  An example that show how to use a  Yocto-LatchedRelay
  *
@@ -28,11 +28,11 @@ async function startDemo(args)
         console.log('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
         return;
     }
-    
+
     // Select the relay to use
     let target;
     if(args[0] == "any") {
-        let anyrelay = YRelay.FirstRelay();   
+        let anyrelay = YRelay.FirstRelay();
         if (anyrelay == null) {
             console.log("No module connected (check USB cable)\n");
             process.exit(1);
@@ -58,7 +58,7 @@ async function startDemo(args)
 if(process.argv.length < 4) {
     console.log("usage: node demo.js <serial_number> [ ON | OFF ]");
     console.log("       node demo.js <logical_name> [ ON | OFF ]");
-    console.log("       node demo.js any [ ON | OFF ]              (use any discovered device)");
+    console.log("       node demo.js any [ ON | OFF ]");
 } else {
     startDemo(process.argv.slice(process.argv.length - 2));
 }
