@@ -1,10 +1,23 @@
+/*********************************************************************
+ *
+ *  $Id: svn_id $
+ *
+ *  An example that show how to use a  Yocto-Temperature-IR
+ *
+ *  You can find more information on our web site:
+ *   Yocto-Temperature-IR documentation:
+ *      https://www.yoctopuce.com/EN/products/yocto-temperature-ir/doc.html
+ *   EcmaScript API Reference:
+ *      https://www.yoctopuce.com/EN/doc/reference/yoctolib-ecmascript-EN.html
+ *
+ *********************************************************************/
+
 "use strict";
 
 require('yoctolib-es2017/yocto_api.js');
-require('yoctolib-es2017/yocto_tilt.js');
-require('yoctolib-es2017/yocto_compass.js');
-require('yoctolib-es2017/yocto_gyro.js');
-require('yoctolib-es2017/yocto_accelerometer.js');
+require('yoctolib-es2017/yocto_temperature.js');
+
+let temp1, temp2;
 
 async function startDemo()
 {
@@ -22,7 +35,7 @@ async function startDemo()
     let serial = process.argv[process.argv.length-1];
     if(serial[8] != '-') {
         // by default use any connected module suitable for the demo
-        let anysensor = YTilt.FirstTilt();
+        let anysensor = YTemperature.FirstTemperature();
         if(anysensor) {
             let module = await anysensor.module();
             serial = await module.get_serialNumber();
@@ -32,33 +45,19 @@ async function startDemo()
         }
     }
     console.log('Using device '+serial);
-    tilt1   = YTilt.FindTilt(serial + ".tilt1");
-    tilt2   = YTilt.FindTilt(serial + ".tilt2");
-    compass = YCompass.FindCompass(serial + ".compass");
-    gyro    = YGyro.FindGyro(serial + ".gyro");
-    accelerometer = YAccelerometer.FindAccelerometer(serial+".accelerometer");
-    count = 0;
+    temp1 = YTemperature.FindTemperature(serial+".temperature1");
+    temp2 = YTemperature.FindTemperature(serial+".temperature2");
 
     refresh();
 }
 
 async function refresh()
 {
-    if (await tilt1.isOnline()) {
-        if (count % 10 == 0) {
-            console.log("tilt1\ttilt2\tcompass\tacc\tgyro");
-        }
-        console.log(
-            tilt1.get_currentValue()+"\t"+
-            tilt2.get_currentValue()+"\t"+
-            compass.get_currentValue()+"\t"+
-            accelerometer.get_currentValue()+"\t"+
-            gyro.get_currentValue()
-        );
-        count++;
+    if (await temp1.isOnline()) {
+        console.log('Ambiant temperature  : '+(await temp1.get_currentValue()) + (await temp1.get_unit()));
+        console.log('Infrared temperature : '+(await temp2.get_currentValue()) + (await temp2.get_unit()));
     } else {
         console.log('Module not connected');
-        count = 0;
     }
     setTimeout(refresh, 500);
 }

@@ -1,9 +1,0 @@
-{
-  "name": "doc-gettingstarted-yocto-3d-v2",
-  "author": "Yoctopuce",
-  "description": "Yoctopuce Doc-GettingStarted-Yocto-3D-V2 example",
-  "dependencies": {
-    "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.32759"
-  }
-}

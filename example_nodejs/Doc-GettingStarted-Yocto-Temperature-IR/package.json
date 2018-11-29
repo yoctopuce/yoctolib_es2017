@@ -1,0 +1,9 @@
+{
+  "name": "doc-gettingstarted-yocto-temperature-ir",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-Temperature-IR example",
+  "dependencies": {
+    "ws": "^1.0.1",
+    "yoctolib-es2017": "^1.10.33423"
+  }
+}
