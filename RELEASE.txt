@@ -1,8 +1,3 @@
-EcmaScript v1.10.33423
+EcmaScript v1.10.33576
 
-- Improve precision of dataLogger retrieval boundaries
-- Add TVoc and MultiSensController class
-- Add support for devices with dynamic functions activation (ex: Yocto-Temperature-IR)
-- Remove old dataLogger API (deprecated since 2014)
-- Fix restart of serial scripts after settings restoration
-- Fix timed notifications with wrong start time
+- Fix missing measure in YDataSet
