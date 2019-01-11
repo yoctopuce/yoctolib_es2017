@@ -1,3 +1,7 @@
-EcmaScript v1.10.33736
+EcmaScript v1.10.33982
 
-- Fix some typos in error messages
+- Catch and log errors in user-defined callback functions
+- Add support for HubDiscoveryCallback and RegisterHub("net")
+- Add get_serialNumber to YFunction object
+- Fix Preregisterhub
+- Fix zombie socket and timer after using YAPI.TestHub

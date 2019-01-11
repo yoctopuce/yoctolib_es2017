@@ -4,6 +4,6 @@
   "description": "Yoctopuce Prog-VanillaNodeJs example",
   "dependencies": {
     "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.33736"
+    "yoctolib-es2017": "^1.10.33982"
   }
 }
