@@ -4,6 +4,6 @@
   "description": "Yoctopuce Doc-GettingStarted-Yocto-4-20mA-Tx example",
   "dependencies": {
     "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.34131"
+    "yoctolib-es2017": "^1.10.34275"
   }
 }
