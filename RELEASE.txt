@@ -1,7 +1,5 @@
-EcmaScript v1.10.34990
+EcmaScript v1.10.35055
 
-- Fix implementation of YModule.get_url() method
-- Fix support for Internet explorer 11
-- Fix loadThermistorResponseTable() method of YTemperature
-- Add documentation for YFileRecord and YWlanRecord class
-- Add toggle() method in YRelay class
+(EcmaScript)- Improve error handling on Wireless connexion
+(Misc)- Misc:[prod] Yocto-Visualization, fixed graphs crash on Linux
+(Misc)- bridgecalib:proj cleanup
