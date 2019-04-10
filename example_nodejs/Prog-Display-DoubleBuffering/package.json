@@ -4,6 +4,6 @@
   "description": "Yoctopuce Prog-Display-DoubleBuffering example",
   "dependencies": {
     "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.35055"
+    "yoctolib-es2017": "^1.10.35071"
   }
 }

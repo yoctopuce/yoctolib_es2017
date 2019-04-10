@@ -1,5 +1,3 @@
-EcmaScript v1.10.35055
+EcmaScript v1.10.35071
 
-(EcmaScript)- Improve error handling on Wireless connexion
-(Misc)- Misc:[prod] Yocto-Visualization, fixed graphs crash on Linux
-(Misc)- bridgecalib:proj cleanup
+- Improve error handling on Wireless connexion
