@@ -4,6 +4,6 @@
   "description": "Yoctopuce Doc-GettingStarted-Yocto-LatchedRelay example",
   "dependencies": {
     "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.35153"
+    "yoctolib-es2017": "^1.10.35259"
   }
 }

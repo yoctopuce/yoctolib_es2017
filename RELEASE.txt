@@ -1,3 +1,4 @@
-EcmaScript v1.10.35153
+EcmaScript v1.10.35259
 
-- Fix handling of '=' characters in queryLine() method
+- Add support for YAPI.RegisterLogFunction
+- Fix WebSocket resume after deadtime causing timeouts of multiple sync/async requests
