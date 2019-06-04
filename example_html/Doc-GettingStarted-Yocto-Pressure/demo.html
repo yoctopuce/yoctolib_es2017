@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_pressure.js"></script>
+  <script>
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+        alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+      }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anysensor = YPressure.FirstPressure();
+        if(anysensor) {
+          let module = await anysensor.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      let press = YPressure.FindPressure(serial+".pressure");
+
+      if (await press.isOnline()) {
+        document.getElementById('msg').value = '';
+        document.getElementById("press").value = (await press.get_currentValue()) + (await press.get_unit());
+      } else {
+        document.getElementById('msg').value = 'Module not connected';
+      }
+      setTimeout(refresh, 500);
+    }
+
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+pressure : <input id='press' readonly><br>
+</body>
+</html>
