@@ -4,6 +4,6 @@
   "description": "Yoctopuce Doc-GettingStarted-Yocto-SPI example",
   "dependencies": {
     "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.35622"
+    "yoctolib-es2017": "^1.10.35635"
   }
 }
