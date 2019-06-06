@@ -2,7 +2,7 @@
   "name": "yoctolib-es2017",
   "author": "Yoctopuce",
   "description": "Yoctopuce library for EcmaScript 2017 (fully asynchronous)",
-  "version": "1.10.35652",
+  "version": "1.10.35708",
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "build": "node build.js build"
   },
   "dependencies": {
-    "ws": "^1.1.5"
+    "ws": "^6.2.1"
   },
   "devDependencies": {
     "semver": "^5.1.0"

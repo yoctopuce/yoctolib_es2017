@@ -1,6 +1,6 @@
-EcmaScript v1.10.35652
+EcmaScript v1.10.35708
 
-- Add getting started example for Yocto-Pressure
-- Add isReadOnly() method to all YFunctions
-- Fix save/restore of thermistor settings
-- Fix log messages to use custom function
+- Add YArithmeticSensor class
+- Update NPM dependency for package "ws"
+- Remove deprecated calls to Buffer()
+- Log requests in loglevel 3

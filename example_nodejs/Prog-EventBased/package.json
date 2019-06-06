@@ -3,7 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Prog-EventBased example",
   "dependencies": {
-    "ws": "^1.0.1",
-    "yoctolib-es2017": "^1.10.35652"
+    "yoctolib-es2017": "^1.10.35708"
   }
 }
