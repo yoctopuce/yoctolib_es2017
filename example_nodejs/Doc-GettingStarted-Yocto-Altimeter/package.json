@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Altimeter example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.35708"
+    "yoctolib-es2017": "^1.10.35838"
   }
 }
