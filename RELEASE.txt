@@ -1,4 +1,4 @@
-EcmaScript v1.10.35838
+EcmaScript v1.10.35871
 
 (EcmaScript)- Fix implementation of YModule.get_url() method
 (EcmaScript)- Fix support for Internet explorer 11
@@ -57,3 +57,4 @@ EcmaScript v1.10.35838
 (Misc)- maximicrovolt:enable file uploads and strings in YFS memory
 (Misc)- bootloader:add support for alternate flash port pic24fj256da206_flash
 (Misc)- serial devices:add support for arithmetic expressions in job files
+(Misc)- datalogger:add recovery code in case of flash memory corruption (Fwerr)
