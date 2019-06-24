@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-PWM-Tx example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.35871"
+    "yoctolib-es2017": "^1.10.35889"
   }
 }
