@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Motor-DC example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.35889"
+    "yoctolib-es2017": "^1.10.35900"
   }
 }

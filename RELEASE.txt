@@ -1,4 +1,4 @@
-EcmaScript v1.10.35889
+EcmaScript v1.10.35900
 
 (EcmaScript)- Fix implementation of YModule.get_url() method
 (EcmaScript)- Fix support for Internet explorer 11
