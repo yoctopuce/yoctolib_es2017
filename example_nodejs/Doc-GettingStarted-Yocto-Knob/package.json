@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Knob example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.35931"
+    "yoctolib-es2017": "^1.10.35944"
   }
 }
