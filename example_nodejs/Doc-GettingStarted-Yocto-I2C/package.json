@@ -1,0 +1,8 @@
+{
+  "name": "doc-gettingstarted-yocto-i2c",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-I2C example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.36218"
+  }
+}

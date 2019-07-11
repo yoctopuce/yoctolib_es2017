@@ -1,4 +1,4 @@
-EcmaScript v1.10.35944
+EcmaScript v1.10.36218
 
-(Misc)- serial devices:add support for arithmetic expressions in job files
-(Misc)- datalogger:add recovery code in case of flash memory corruption (Fwerr)
+- Add ConsolidatedDataSet class and Prog-ExportCSV
+- Add support for Yocto-I2c

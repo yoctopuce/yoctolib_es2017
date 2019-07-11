@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_i2cport.js"></script>
+  <script>
+    let i2cPort;
+
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+        alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+      }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anyI2c = YI2cPort.FirstI2cPort();
+        if(anyI2c) {
+          let module = await anyI2c.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      i2cPort = YI2cPort.FindI2cPort(serial+'.i2cPort');
+      if(await i2cPort.isOnline()) {
+        document.getElementById('msg').value = '';
+        // sample code reading MCP9804 temperature sensor
+        await i2cPort.set_i2cMode("400kbps");
+        await i2cPort.set_voltageLevel(YI2cPort.VOLTAGELEVEL_TTL3V);
+        await i2cPort.reset();
+        let toSend = [0x05];
+        let received = await i2cPort.i2cSendAndReceiveArray(0x1f, toSend, 2);
+        tempReg = (received[0] << 8) + received[1]
+        if(tempReg & 0x1000) {
+            tempReg -= 0x2000   // perform sign extension
+        } else {
+            tempReg &= 0x0fff   // clear status bits
+        }
+        document.getElementById('temp').value = (tempReg / 16.0).toString();
+      } else {
+        document.getElementById('msg').value = 'Module not connected';
+      }
+      setTimeout(refresh, 500);
+    }
+
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+temperature : <input id='temp' readonly><br>
+<i>Note: Make sure voltage are configured properly!</i>
+</body>
+</html>
