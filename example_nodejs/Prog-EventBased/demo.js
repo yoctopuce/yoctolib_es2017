@@ -69,7 +69,7 @@ async function deviceArrival(module)
 async function deviceRemoval(module)
 {
     let serial = await module.get_serialNumber();
-    console.log('Device removal: '+serial);
+    console.log('Device removal : '+serial);
 }
 
 function handleHotPlug()
@@ -77,10 +77,16 @@ function handleHotPlug()
     YAPI.SetTimeout(handleHotPlug,1000);
 }
 
+function logfun(line)
+{
+    console.log('LOG : ' + line);
+}
+
 async function startDemo()
 {
     await YAPI.LogUnhandledPromiseRejections();
     await YAPI.DisableExceptions();
+    await YAPI.RegisterLogFunction(logfun)
 
     // Setup the API to use the VirtualHub on local machine
     let errmsg = new YErrorMsg();

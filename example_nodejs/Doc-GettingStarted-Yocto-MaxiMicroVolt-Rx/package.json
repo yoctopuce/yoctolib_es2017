@@ -1,0 +1,8 @@
+{
+  "name": "doc-gettingstarted-yocto-maximicrovolt-rx",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-MaxiMicroVolt-Rx example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.36692"
+  }
+}

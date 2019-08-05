@@ -1,4 +1,5 @@
-EcmaScript v1.10.36218
+EcmaScript v1.10.36692
 
-- Add ConsolidatedDataSet class and Prog-ExportCSV
-- Add support for Yocto-I2c
+- Add method to get product name and revision
+- Fix cache latency in YModule.get_logicalName() and YModule.get_beacon()
+- Fix Invalid end time in datalogger preview.
