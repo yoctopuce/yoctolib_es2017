@@ -38,7 +38,7 @@
         document.getElementById('msg').value = '';
         // sample code reading MCP9804 temperature sensor
         await i2cPort.set_i2cMode("400kbps");
-        await i2cPort.set_voltageLevel(YI2cPort.VOLTAGELEVEL_TTL3V);
+        await i2cPort.set_i2cVoltageLevel(YI2cPort.I2CVOLTAGELEVEL_3V3);
         await i2cPort.reset();
         let toSend = [0x05];
         let received = await i2cPort.i2cSendAndReceiveArray(0x1f, toSend, 2);

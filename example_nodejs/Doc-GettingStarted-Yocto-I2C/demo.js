@@ -48,7 +48,7 @@ async function startDemo(args)
     if(await i2cPort.isOnline()) {
         // sample code reading MCP9804 temperature sensor
         await i2cPort.set_i2cMode("400kbps");
-        await i2cPort.set_voltageLevel(YI2cPort.VOLTAGELEVEL_TTL3V);
+        await i2cPort.set_i2cVoltageLevel(YI2cPort.I2CVOLTAGELEVEL_3V3);
         await i2cPort.reset();
         // do not forget to configure the powerOutput of the Yocto-I2C
         // (for MCP9804 powerOutput need to be set at 3.3V)
