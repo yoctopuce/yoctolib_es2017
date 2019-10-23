@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-CO2 example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.37304"
+    "yoctolib-es2017": "^1.10.37780"
   }
 }

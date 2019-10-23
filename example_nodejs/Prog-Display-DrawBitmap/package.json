@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Prog-Display-DrawBitmap example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.37304"
+    "yoctolib-es2017": "^1.10.37780"
   }
 }
