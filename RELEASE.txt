@@ -1,4 +1,8 @@
-EcmaScript v1.10.37780
+EcmaScript v1.10.38155
 
-- Add missing "saveToFlash" hints
-- Fix Yocto-3D-V2 mount position handling
+(Libs)- Improve every class description (add sample product name)
+(Libs)- Generate new classes using u31 for unsigned ints
+(Misc)- Fix Application that was not started correctly
+(Misc)- Set AssemblyFileVersion to all CS.Net assembly
+(Misc)- labview/cs:fix few details
+(Misc)- dot net proxy:added ref keeper class
