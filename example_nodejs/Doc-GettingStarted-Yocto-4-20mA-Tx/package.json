@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-4-20mA-Tx example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.38168"
+    "yoctolib-es2017": "^1.10.38914"
   }
 }

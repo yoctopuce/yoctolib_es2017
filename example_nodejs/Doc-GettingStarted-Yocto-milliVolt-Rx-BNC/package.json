@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-milliVolt-Rx-BNC example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.38168"
+    "yoctolib-es2017": "^1.10.38914"
   }
 }
