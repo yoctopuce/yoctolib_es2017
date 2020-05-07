@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_buzzer.js"></script>
+  <script src="../../lib/yocto_colorled.js"></script>
+  <script src="../../lib/yocto_anbutton.js"></script>
+  <script>
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+      alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+      return;
+    }
+      refresh();
+    }
+
+    async function refresh()
+    {
+
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        let buzzer = YBuzzer.FirstBuzzer();
+        if(buzzer) {
+          let module = await buzzer.module();
+          serial = await module.get_serialNumber();
+        }
+      }
+      let buz = YBuzzer.FindBuzzer(serial + ".buzzer");
+      let led = YColorLed.FindColorLed(serial + ".colorLed");
+      let button1 = YAnButton.FindAnButton(serial + ".anButton1");
+      let button2 = YAnButton.FindAnButton(serial + ".anButton2");
+
+
+      if (await buz.isOnline()) {
+        var frequency;
+        var color;
+        var volume;
+        var b1 = (await button1.get_isPressed() == YAnButton.ISPRESSED_TRUE);
+        var b2 = (await button2.get_isPressed() == YAnButton.ISPRESSED_TRUE);
+        if (b1 || b2) {
+          if (b1) {
+              volume = 60;
+              frequency = 1500;
+              color = 0xff0000;
+          } else {
+              volume = 30;
+              color = 0x00ff00;
+              frequency = 750;
+          }
+          await led.resetBlinkSeq();
+          await led.addRgbMoveToBlinkSeq(color, 100);
+          await led.addRgbMoveToBlinkSeq(0, 100);
+          await led.startBlinkSeq();
+          await buz.set_volume(volume);
+          for (let i = 0; i < 5; i++) { // this can be done using sequence as well
+            buz.set_frequency(frequency);
+            buz.freqMove(2 * frequency, 250);
+            await YAPI.Sleep(250);
+          }
+          await buz.set_frequency(0);
+          await led.stopBlinkSeq();
+          await led.set_rgbColor(0);
+        }
+      } else {
+        console.log('Module not connected');
+      }
+      setTimeout(refresh, 250);
+    }
+
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+Push any of the test buttons.
+</body>
+</html>

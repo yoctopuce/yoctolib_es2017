@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Amp example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.39003"
+    "yoctolib-es2017": "^1.10.40411"
   }
 }

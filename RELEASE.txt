@@ -1,3 +1,5 @@
-EcmaScript v1.10.39003
+EcmaScript v1.10.40411
 
-- Fix syntax error in YConsolidatedDataSet class
+- Add definitions for temperature type "CHANNEL_OFF" and callback encoding "INFLUXDB_V2"
+- Add example for Yocto-MaxiBuzzer
+- Fix doc for queryHex method
