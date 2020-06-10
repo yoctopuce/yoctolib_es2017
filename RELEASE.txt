@@ -1,5 +1,3 @@
-EcmaScript v1.10.40411
+EcmaScript v1.10.40924
 
-- Add definitions for temperature type "CHANNEL_OFF" and callback encoding "INFLUXDB_V2"
-- Add example for Yocto-MaxiBuzzer
-- Fix doc for queryHex method
+- Fix set_allSettingsAndFiles() that was accepting files with \r\n line ending
