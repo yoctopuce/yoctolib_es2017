@@ -15,8 +15,8 @@ Yoctopuce EcmaScript 2017 library
 ## What is this library good for ?
 
 This library provides access to [Yoctopuce devices](https://www.yoctopuce.com) for modern JavaScript
-engines. It can be used within a browser as well as with Node.js. Asynchronous communication with the devices
-is handled across the whole library using Promise objects, leveraging the new EcmaScript 2017 `async` /
+engines. It can be used within a browser as well as with Node.js. It handles asynchronous communication
+with the devices using Promise objects,  leveraging the new EcmaScript 2017 `async` /
 `await` non-blocking syntax for asynchronous I/O.
 
 Happily 2017 is there, and `async` / `await` is available out-of-the-box in most Javascript engines.

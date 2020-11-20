@@ -1,6 +1,3 @@
-EcmaScript v1.10.42060
+EcmaScript v1.10.42639
 
-- Add decodePLMN support into YCellular
-- Add function to retrieve all messages (snooping) for SpiPort and I2cPort
-- Add separate meters for delivered/received energy and bandwidth attribute for PwmInput
-- Fix slight error in NTC parameters computation
+- Add support for use as a standard ECMAScript module
