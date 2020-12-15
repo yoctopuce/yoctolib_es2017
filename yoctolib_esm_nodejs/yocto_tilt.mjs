@@ -91,9 +91,9 @@ export class YTilt extends YSensor
     }
 
     /**
-     * Returns the measure update frequency, measured in Hz (Yocto-3D-V2 only).
+     * Returns the measure update frequency, measured in Hz.
      *
-     * @return {number} an integer corresponding to the measure update frequency, measured in Hz (Yocto-3D-V2 only)
+     * @return {number} an integer corresponding to the measure update frequency, measured in Hz
      *
      * On failure, throws an exception or returns YTilt.BANDWIDTH_INVALID.
      */
@@ -111,13 +111,12 @@ export class YTilt extends YSensor
     }
 
     /**
-     * Changes the measure update frequency, measured in Hz (Yocto-3D-V2 only). When the
+     * Changes the measure update frequency, measured in Hz. When the
      * frequency is lower, the device performs averaging.
      * Remember to call the saveToFlash()
      * method of the module if the modification must be kept.
      *
      * @param newval {number} : an integer corresponding to the measure update frequency, measured in Hz
-     * (Yocto-3D-V2 only)
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *
@@ -222,6 +221,45 @@ export class YTilt extends YSensor
     }
 
     /**
+     * Performs a zero calibration for the tilt measurement (Yocto-Inclinometer only).
+     * When this method is invoked, a simple shift (translation)
+     * is applied so that the current position is reported as a zero angle.
+     * Be aware that this shift will also affect the measurement boundaries.
+     *
+     * @return {number} YAPI.SUCCESS if the call succeeds.
+     *
+     * On failure, throws an exception or returns a negative error code.
+     */
+    async calibrateToZero()
+    {
+        /** @type {number} **/
+        let currentRawVal;
+        /** @type {number[]} **/
+        let rawVals = [];
+        /** @type {number[]} **/
+        let refVals = [];
+        currentRawVal = await this.get_currentRawValue();
+        rawVals.length = 0;
+        refVals.length = 0;
+        rawVals.push(currentRawVal);
+        refVals.push(0.0);
+        return await this.calibrateFromPoints(rawVals, refVals);
+    }
+
+    /**
+     * Cancels any previous zero calibration for the tilt measurement (Yocto-Inclinometer only).
+     * This function restores the factory zero calibration.
+     *
+     * @return {number} YAPI.SUCCESS if the call succeeds.
+     *
+     * On failure, throws an exception or returns a negative error code.
+     */
+    async restoreZeroCalibration()
+    {
+        return await this._setAttr('calibrationParam', '0');
+    }
+
+    /**
      * Continues the enumeration of tilt sensors started using yFirstTilt().
      * Caution: You can't make any assumption about the returned tilt sensors order.
      * If you want to find a specific a tilt sensor, use Tilt.findTilt()
@@ -316,9 +354,9 @@ export class YTiltProxy extends YSensorProxy
     //--- (YTilt accessors declaration)
 
     /**
-     * Returns the measure update frequency, measured in Hz (Yocto-3D-V2 only).
+     * Returns the measure update frequency, measured in Hz.
      *
-     * @return {number} an integer corresponding to the measure update frequency, measured in Hz (Yocto-3D-V2 only)
+     * @return {number} an integer corresponding to the measure update frequency, measured in Hz
      *
      * On failure, throws an exception or returns YTilt.BANDWIDTH_INVALID.
      */
@@ -328,13 +366,12 @@ export class YTiltProxy extends YSensorProxy
     }
 
     /**
-     * Changes the measure update frequency, measured in Hz (Yocto-3D-V2 only). When the
+     * Changes the measure update frequency, measured in Hz. When the
      * frequency is lower, the device performs averaging.
      * Remember to call the saveToFlash()
      * method of the module if the modification must be kept.
      *
      * @param newval {number} : an integer corresponding to the measure update frequency, measured in Hz
-     * (Yocto-3D-V2 only)
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *
@@ -349,6 +386,20 @@ export class YTiltProxy extends YSensorProxy
     get_axis()
     {
         return this.liveFunc._axis;
+    }
+
+    /**
+     * Cancels any previous zero calibration for the tilt measurement (Yocto-Inclinometer only).
+     * This function restores the factory zero calibration.
+     *
+     * @return {number} YAPI.SUCCESS if the call succeeds.
+     *
+     * On failure, throws an exception or returns a negative error code.
+     */
+    restoreZeroCalibration()
+    {
+        this.liveFunc.restoreZeroCalibration();
+        return YAPI_SUCCESS;
     }
     //--- (end of YTilt accessors declaration)
 }

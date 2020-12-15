@@ -118,8 +118,8 @@ export class YLightSensor extends YSensor
      *
      * @return {number} a value among YLightSensor.MEASURETYPE_HUMAN_EYE,
      * YLightSensor.MEASURETYPE_WIDE_SPECTRUM, YLightSensor.MEASURETYPE_INFRARED,
-     * YLightSensor.MEASURETYPE_HIGH_RATE and YLightSensor.MEASURETYPE_HIGH_ENERGY corresponding to the
-     * type of light measure
+     * YLightSensor.MEASURETYPE_HIGH_RATE, YLightSensor.MEASURETYPE_HIGH_ENERGY and
+     * YLightSensor.MEASURETYPE_HIGH_RESOLUTION corresponding to the type of light measure
      *
      * On failure, throws an exception or returns YLightSensor.MEASURETYPE_INVALID.
      */
@@ -145,8 +145,8 @@ export class YLightSensor extends YSensor
      *
      * @param newval {number} : a value among YLightSensor.MEASURETYPE_HUMAN_EYE,
      * YLightSensor.MEASURETYPE_WIDE_SPECTRUM, YLightSensor.MEASURETYPE_INFRARED,
-     * YLightSensor.MEASURETYPE_HIGH_RATE and YLightSensor.MEASURETYPE_HIGH_ENERGY corresponding to the
-     * light sensor type used in the device
+     * YLightSensor.MEASURETYPE_HIGH_RATE, YLightSensor.MEASURETYPE_HIGH_ENERGY and
+     * YLightSensor.MEASURETYPE_HIGH_RESOLUTION corresponding to the light sensor type used in the device
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *
@@ -302,6 +302,7 @@ export class YLightSensor extends YSensor
             MEASURETYPE_INFRARED         : 2,
             MEASURETYPE_HIGH_RATE        : 3,
             MEASURETYPE_HIGH_ENERGY      : 4,
+            MEASURETYPE_HIGH_RESOLUTION  : 5,
             MEASURETYPE_INVALID          : -1
         });
     }
@@ -343,8 +344,8 @@ export class YLightSensorProxy extends YSensorProxy
      *
      * @return {number} a value among YLightSensor.MEASURETYPE_HUMAN_EYE,
      * YLightSensor.MEASURETYPE_WIDE_SPECTRUM, YLightSensor.MEASURETYPE_INFRARED,
-     * YLightSensor.MEASURETYPE_HIGH_RATE and YLightSensor.MEASURETYPE_HIGH_ENERGY corresponding to the
-     * type of light measure
+     * YLightSensor.MEASURETYPE_HIGH_RATE, YLightSensor.MEASURETYPE_HIGH_ENERGY and
+     * YLightSensor.MEASURETYPE_HIGH_RESOLUTION corresponding to the type of light measure
      *
      * On failure, throws an exception or returns YLightSensor.MEASURETYPE_INVALID.
      */
@@ -362,8 +363,8 @@ export class YLightSensorProxy extends YSensorProxy
      *
      * @param newval {number} : a value among YLightSensor.MEASURETYPE_HUMAN_EYE,
      * YLightSensor.MEASURETYPE_WIDE_SPECTRUM, YLightSensor.MEASURETYPE_INFRARED,
-     * YLightSensor.MEASURETYPE_HIGH_RATE and YLightSensor.MEASURETYPE_HIGH_ENERGY corresponding to the
-     * light sensor type used in the device
+     * YLightSensor.MEASURETYPE_HIGH_RATE, YLightSensor.MEASURETYPE_HIGH_ENERGY and
+     * YLightSensor.MEASURETYPE_HIGH_RESOLUTION corresponding to the light sensor type used in the device
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *

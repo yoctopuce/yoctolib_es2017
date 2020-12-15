@@ -1,0 +1,8 @@
+{
+  "name": "doc-gettingstarted-yocto-inclinometer",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-Inclinometer example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.42982"
+  }
+}

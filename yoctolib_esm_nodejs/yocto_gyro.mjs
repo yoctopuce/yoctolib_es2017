@@ -332,9 +332,9 @@ YQt.imm_Init();
     }
 
     /**
-     * Returns the measure update frequency, measured in Hz (Yocto-3D-V2 only).
+     * Returns the measure update frequency, measured in Hz.
      *
-     * @return {number} an integer corresponding to the measure update frequency, measured in Hz (Yocto-3D-V2 only)
+     * @return {number} an integer corresponding to the measure update frequency, measured in Hz
      *
      * On failure, throws an exception or returns YGyro.BANDWIDTH_INVALID.
      */
@@ -352,13 +352,12 @@ YQt.imm_Init();
     }
 
     /**
-     * Changes the measure update frequency, measured in Hz (Yocto-3D-V2 only). When the
+     * Changes the measure update frequency, measured in Hz. When the
      * frequency is lower, the device performs averaging.
      * Remember to call the saveToFlash()
      * method of the module if the modification must be kept.
      *
      * @param newval {number} : an integer corresponding to the measure update frequency, measured in Hz
-     * (Yocto-3D-V2 only)
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *
@@ -924,9 +923,9 @@ YQt.imm_Init();
     //--- (generated code: YGyro accessors declaration)
 
     /**
-     * Returns the measure update frequency, measured in Hz (Yocto-3D-V2 only).
+     * Returns the measure update frequency, measured in Hz.
      *
-     * @return {number} an integer corresponding to the measure update frequency, measured in Hz (Yocto-3D-V2 only)
+     * @return {number} an integer corresponding to the measure update frequency, measured in Hz
      *
      * On failure, throws an exception or returns YGyro.BANDWIDTH_INVALID.
      */
@@ -936,13 +935,12 @@ YQt.imm_Init();
     }
 
     /**
-     * Changes the measure update frequency, measured in Hz (Yocto-3D-V2 only). When the
+     * Changes the measure update frequency, measured in Hz. When the
      * frequency is lower, the device performs averaging.
      * Remember to call the saveToFlash()
      * method of the module if the modification must be kept.
      *
      * @param newval {number} : an integer corresponding to the measure update frequency, measured in Hz
-     * (Yocto-3D-V2 only)
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *
