@@ -116,10 +116,8 @@ export class YLightSensor extends YSensor
     /**
      * Returns the type of light measure.
      *
-     * @return {number} a value among YLightSensor.MEASURETYPE_HUMAN_EYE,
-     * YLightSensor.MEASURETYPE_WIDE_SPECTRUM, YLightSensor.MEASURETYPE_INFRARED,
-     * YLightSensor.MEASURETYPE_HIGH_RATE, YLightSensor.MEASURETYPE_HIGH_ENERGY and
-     * YLightSensor.MEASURETYPE_HIGH_RESOLUTION corresponding to the type of light measure
+     * @return {number} a value among YLightSensor.MEASURETYPE_HUMAN_EYE and
+     * YLightSensor.MEASURETYPE_HUMAN_EYE corresponding to the type of light measure
      *
      * On failure, throws an exception or returns YLightSensor.MEASURETYPE_INVALID.
      */
@@ -143,10 +141,8 @@ export class YLightSensor extends YSensor
      * Remember to call the saveToFlash() method of the module if the
      * modification must be kept.
      *
-     * @param newval {number} : a value among YLightSensor.MEASURETYPE_HUMAN_EYE,
-     * YLightSensor.MEASURETYPE_WIDE_SPECTRUM, YLightSensor.MEASURETYPE_INFRARED,
-     * YLightSensor.MEASURETYPE_HIGH_RATE, YLightSensor.MEASURETYPE_HIGH_ENERGY and
-     * YLightSensor.MEASURETYPE_HIGH_RESOLUTION corresponding to the light sensor type used in the device
+     * @param newval {number} : a value among YLightSensor.MEASURETYPE_HUMAN_EYE and
+     * YLightSensor.MEASURETYPE_HUMAN_EYE corresponding to the light sensor type used in the device
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *
@@ -298,11 +294,6 @@ export class YLightSensor extends YSensor
     {
         return Object.assign(super.imm_Const(), {
             MEASURETYPE_HUMAN_EYE        : 0,
-            MEASURETYPE_WIDE_SPECTRUM    : 1,
-            MEASURETYPE_INFRARED         : 2,
-            MEASURETYPE_HIGH_RATE        : 3,
-            MEASURETYPE_HIGH_ENERGY      : 4,
-            MEASURETYPE_HIGH_RESOLUTION  : 5,
             MEASURETYPE_INVALID          : -1
         });
     }
@@ -342,10 +333,8 @@ export class YLightSensorProxy extends YSensorProxy
     /**
      * Returns the type of light measure.
      *
-     * @return {number} a value among YLightSensor.MEASURETYPE_HUMAN_EYE,
-     * YLightSensor.MEASURETYPE_WIDE_SPECTRUM, YLightSensor.MEASURETYPE_INFRARED,
-     * YLightSensor.MEASURETYPE_HIGH_RATE, YLightSensor.MEASURETYPE_HIGH_ENERGY and
-     * YLightSensor.MEASURETYPE_HIGH_RESOLUTION corresponding to the type of light measure
+     * @return {number} a value among YLightSensor.MEASURETYPE_HUMAN_EYE and
+     * YLightSensor.MEASURETYPE_HUMAN_EYE corresponding to the type of light measure
      *
      * On failure, throws an exception or returns YLightSensor.MEASURETYPE_INVALID.
      */
@@ -361,10 +350,8 @@ export class YLightSensorProxy extends YSensorProxy
      * Remember to call the saveToFlash() method of the module if the
      * modification must be kept.
      *
-     * @param newval {number} : a value among YLightSensor.MEASURETYPE_HUMAN_EYE,
-     * YLightSensor.MEASURETYPE_WIDE_SPECTRUM, YLightSensor.MEASURETYPE_INFRARED,
-     * YLightSensor.MEASURETYPE_HIGH_RATE, YLightSensor.MEASURETYPE_HIGH_ENERGY and
-     * YLightSensor.MEASURETYPE_HIGH_RESOLUTION corresponding to the light sensor type used in the device
+     * @param newval {number} : a value among YLightSensor.MEASURETYPE_HUMAN_EYE and
+     * YLightSensor.MEASURETYPE_HUMAN_EYE corresponding to the light sensor type used in the device
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *

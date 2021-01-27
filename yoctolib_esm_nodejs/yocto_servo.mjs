@@ -99,7 +99,7 @@ export class YServo extends YFunction
             this._neutral = parseInt(val);
             return 1;
         case 'move':
-            this._move = val;
+            this._move = <string>val;
             return 1;
         case 'positionAtPowerOn':
             this._positionAtPowerOn = parseInt(val);

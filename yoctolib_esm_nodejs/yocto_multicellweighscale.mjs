@@ -68,6 +68,8 @@ export class YMultiCellWeighScale extends YSensor
         /** @member {number} **/
         this._cellCount                  = YMultiCellWeighScale.CELLCOUNT_INVALID;
         /** @member {number} **/
+        this._externalSense              = YMultiCellWeighScale.EXTERNALSENSE_INVALID;
+        /** @member {number} **/
         this._excitation                 = YMultiCellWeighScale.EXCITATION_INVALID;
         /** @member {number} **/
         this._tempAvgAdaptRatio          = YMultiCellWeighScale.TEMPAVGADAPTRATIO_INVALID;
@@ -93,6 +95,9 @@ export class YMultiCellWeighScale extends YSensor
         switch(name) {
         case 'cellCount':
             this._cellCount = parseInt(val);
+            return 1;
+        case 'externalSense':
+            this._externalSense = parseInt(val);
             return 1;
         case 'excitation':
             this._excitation = parseInt(val);
@@ -177,6 +182,50 @@ export class YMultiCellWeighScale extends YSensor
         let rest_val;
         rest_val = String(newval);
         return await this._setAttr('cellCount',rest_val);
+    }
+
+    /**
+     * Returns true if entry 4 is used as external sense for 6-wires load cells.
+     *
+     * @return {number} either YMultiCellWeighScale.EXTERNALSENSE_FALSE or
+     * YMultiCellWeighScale.EXTERNALSENSE_TRUE, according to true if entry 4 is used as external sense for
+     * 6-wires load cells
+     *
+     * On failure, throws an exception or returns YMultiCellWeighScale.EXTERNALSENSE_INVALID.
+     */
+    async get_externalSense()
+    {
+        /** @type {number} **/
+        let res;
+        if (this._cacheExpiration <= this._yapi.GetTickCount()) {
+            if (await this.load(this._yapi.defaultCacheValidity) != this._yapi.SUCCESS) {
+                return YMultiCellWeighScale.EXTERNALSENSE_INVALID;
+            }
+        }
+        res = this._externalSense;
+        return res;
+    }
+
+    /**
+     * Changes the configuration to tell if entry 4 is used as external sense for
+     * 6-wires load cells. Remember to call the saveToFlash() method of the
+     * module if the modification must be kept.
+     *
+     * @param newval {number} : either YMultiCellWeighScale.EXTERNALSENSE_FALSE or
+     * YMultiCellWeighScale.EXTERNALSENSE_TRUE, according to the configuration to tell if entry 4 is used
+     * as external sense for
+     *         6-wires load cells
+     *
+     * @return {number} YAPI.SUCCESS if the call succeeds.
+     *
+     * On failure, throws an exception or returns a negative error code.
+     */
+    async set_externalSense(newval)
+    {
+        /** @type {string} **/
+        let rest_val;
+        rest_val = String(newval);
+        return await this._setAttr('externalSense',rest_val);
     }
 
     /**
@@ -613,6 +662,9 @@ export class YMultiCellWeighScale extends YSensor
     {
         return Object.assign(super.imm_Const(), {
             CELLCOUNT_INVALID            : YAPI.INVALID_UINT,
+            EXTERNALSENSE_FALSE          : 0,
+            EXTERNALSENSE_TRUE           : 1,
+            EXTERNALSENSE_INVALID        : -1,
             EXCITATION_OFF               : 0,
             EXCITATION_DC                : 1,
             EXCITATION_AC                : 2,
@@ -695,6 +747,40 @@ export class YMultiCellWeighScaleProxy extends YSensorProxy
     set_cellCount(newval)
     {
         this.liveFunc.set_cellCount(newval);
+        return this._yapi.SUCCESS;
+    }
+
+    /**
+     * Returns true if entry 4 is used as external sense for 6-wires load cells.
+     *
+     * @return {number} either YMultiCellWeighScale.EXTERNALSENSE_FALSE or
+     * YMultiCellWeighScale.EXTERNALSENSE_TRUE, according to true if entry 4 is used as external sense for
+     * 6-wires load cells
+     *
+     * On failure, throws an exception or returns YMultiCellWeighScale.EXTERNALSENSE_INVALID.
+     */
+    get_externalSense()
+    {
+        return this.liveFunc._externalSense;
+    }
+
+    /**
+     * Changes the configuration to tell if entry 4 is used as external sense for
+     * 6-wires load cells. Remember to call the saveToFlash() method of the
+     * module if the modification must be kept.
+     *
+     * @param newval {number} : either YMultiCellWeighScale.EXTERNALSENSE_FALSE or
+     * YMultiCellWeighScale.EXTERNALSENSE_TRUE, according to the configuration to tell if entry 4 is used
+     * as external sense for
+     *         6-wires load cells
+     *
+     * @return {number} YAPI.SUCCESS if the call succeeds.
+     *
+     * On failure, throws an exception or returns a negative error code.
+     */
+    set_externalSense(newval)
+    {
+        this.liveFunc.set_externalSense(newval);
         return this._yapi.SUCCESS;
     }
 

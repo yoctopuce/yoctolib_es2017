@@ -120,7 +120,7 @@ export class YWatchdog extends YFunction
             this._pulseTimer = parseInt(val);
             return 1;
         case 'delayedPulseTimer':
-            this._delayedPulseTimer = val;
+            this._delayedPulseTimer = <string>val;
             return 1;
         case 'countdown':
             this._countdown = parseInt(val);

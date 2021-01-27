@@ -99,10 +99,10 @@ export class YColorLed extends YFunction
             this._hslColor = parseInt(val);
             return 1;
         case 'rgbMove':
-            this._rgbMove = val;
+            this._rgbMove = <string>val;
             return 1;
         case 'hslMove':
-            this._hslMove = val;
+            this._hslMove = <string>val;
             return 1;
         case 'rgbColorAtPowerOn':
             this._rgbColorAtPowerOn = parseInt(val);

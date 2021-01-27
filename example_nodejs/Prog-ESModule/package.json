@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-Inventory example using ECMAScript module import",
   "dependencies": {
-    "yoctolib-esm": "^1.10.42982"
+    "yoctolib-esm": "^1.10.43583"
   }
 }

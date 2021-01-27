@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-MaxiBridge example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.42982"
+    "yoctolib-es2017": "^1.10.43583"
   }
 }

@@ -258,7 +258,7 @@ export class YMultiAxisController extends YFunction
         //may throw an exception
         retBin = await this._download(url);
         res = retBin[0];
-        if (res == 49) {
+        if (res < 58) {
             if (!(res == 48)) {
                 return this._throw(this._yapi.DEVICE_BUSY,'Motor command pipeline is full, try again later',this._yapi.DEVICE_BUSY);
             }

@@ -466,8 +466,9 @@ export class YAnButton extends YFunction
     /**
      * Returns the decoding method applied to the input (analog or multiplexed binary switches).
      *
-     * @return {number} either YAnButton.INPUTTYPE_ANALOG or YAnButton.INPUTTYPE_DIGITAL4, according to
-     * the decoding method applied to the input (analog or multiplexed binary switches)
+     * @return {number} a value among YAnButton.INPUTTYPE_ANALOG_FAST, YAnButton.INPUTTYPE_DIGITAL4 and
+     * YAnButton.INPUTTYPE_ANALOG_SMOOTH corresponding to the decoding method applied to the input (analog
+     * or multiplexed binary switches)
      *
      * On failure, throws an exception or returns YAnButton.INPUTTYPE_INVALID.
      */
@@ -488,8 +489,9 @@ export class YAnButton extends YFunction
      * Changes the decoding method applied to the input (analog or multiplexed binary switches).
      * Remember to call the saveToFlash() method of the module if the modification must be kept.
      *
-     * @param newval {number} : either YAnButton.INPUTTYPE_ANALOG or YAnButton.INPUTTYPE_DIGITAL4,
-     * according to the decoding method applied to the input (analog or multiplexed binary switches)
+     * @param newval {number} : a value among YAnButton.INPUTTYPE_ANALOG_FAST,
+     * YAnButton.INPUTTYPE_DIGITAL4 and YAnButton.INPUTTYPE_ANALOG_SMOOTH corresponding to the decoding
+     * method applied to the input (analog or multiplexed binary switches)
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *
@@ -667,8 +669,9 @@ export class YAnButton extends YFunction
             LASTTIMERELEASED_INVALID     : YAPI.INVALID_LONG,
             PULSECOUNTER_INVALID         : YAPI.INVALID_LONG,
             PULSETIMER_INVALID           : YAPI.INVALID_LONG,
-            INPUTTYPE_ANALOG             : 0,
+            INPUTTYPE_ANALOG_FAST        : 0,
             INPUTTYPE_DIGITAL4           : 1,
+            INPUTTYPE_ANALOG_SMOOTH      : 2,
             INPUTTYPE_INVALID            : -1
         });
     }
@@ -928,8 +931,9 @@ export class YAnButtonProxy extends YFunctionProxy
     /**
      * Returns the decoding method applied to the input (analog or multiplexed binary switches).
      *
-     * @return {number} either YAnButton.INPUTTYPE_ANALOG or YAnButton.INPUTTYPE_DIGITAL4, according to
-     * the decoding method applied to the input (analog or multiplexed binary switches)
+     * @return {number} a value among YAnButton.INPUTTYPE_ANALOG_FAST, YAnButton.INPUTTYPE_DIGITAL4 and
+     * YAnButton.INPUTTYPE_ANALOG_SMOOTH corresponding to the decoding method applied to the input (analog
+     * or multiplexed binary switches)
      *
      * On failure, throws an exception or returns YAnButton.INPUTTYPE_INVALID.
      */
@@ -942,8 +946,9 @@ export class YAnButtonProxy extends YFunctionProxy
      * Changes the decoding method applied to the input (analog or multiplexed binary switches).
      * Remember to call the saveToFlash() method of the module if the modification must be kept.
      *
-     * @param newval {number} : either YAnButton.INPUTTYPE_ANALOG or YAnButton.INPUTTYPE_DIGITAL4,
-     * according to the decoding method applied to the input (analog or multiplexed binary switches)
+     * @param newval {number} : a value among YAnButton.INPUTTYPE_ANALOG_FAST,
+     * YAnButton.INPUTTYPE_DIGITAL4 and YAnButton.INPUTTYPE_ANALOG_SMOOTH corresponding to the decoding
+     * method applied to the input (analog or multiplexed binary switches)
      *
      * @return {number} YAPI.SUCCESS if the call succeeds.
      *
