@@ -1,3 +1,4 @@
-EcmaScript v1.10.43583
+EcmaScript v1.10.43781
 
-- minor fix
+use api version 1.0
+- improve documentation

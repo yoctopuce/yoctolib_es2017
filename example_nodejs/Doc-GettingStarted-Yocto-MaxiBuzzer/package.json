@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-MaxiBuzzer example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.43583"
+    "yoctolib-es2017": "^1.10.43781"
   }
 }
