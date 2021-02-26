@@ -1,4 +1,4 @@
-EcmaScript v1.10.43781
+EcmaScript v1.10.44029
 
-use api version 1.0
-- improve documentation
+(EcmaScript)- Fix handling of notifications for Yocto-Temperature-IR
+- Add YAPI.AddUdevRule() method
