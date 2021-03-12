@@ -1,4 +1,3 @@
-EcmaScript v1.10.44029
+EcmaScript v1.10.44175
 
-(EcmaScript)- Fix handling of notifications for Yocto-Temperature-IR
-- Add YAPI.AddUdevRule() method
+- Add Yocto-CO2-V2 forced calibration method

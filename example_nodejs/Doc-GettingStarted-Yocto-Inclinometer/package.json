@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Inclinometer example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.44029"
+    "yoctolib-es2017": "^1.10.44175"
   }
 }
