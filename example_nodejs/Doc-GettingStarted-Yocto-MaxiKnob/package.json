@@ -1,0 +1,8 @@
+{
+  "name": "doc-gettingstarted-yocto-maxiknob",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-MaxiKnob example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.45343"
+  }
+}

@@ -46,8 +46,8 @@
 
     window.updateVoltage = function(voltage)
     {
-      vout1.set_dutyCycle(voltage);      // immediate change
-      vout2.dutyCycleMove(voltage,3000); // smooth change
+      vout1.set_currentVoltage(voltage);      // immediate change
+      vout2.voltageMove(voltage,3000); // smooth change
     };
 
     startDemo();  </script>

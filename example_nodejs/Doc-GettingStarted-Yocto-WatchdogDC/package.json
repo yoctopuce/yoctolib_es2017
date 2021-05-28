@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-WatchdogDC example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.44175"
+    "yoctolib-es2017": "^1.10.45343"
   }
 }
