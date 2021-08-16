@@ -1,8 +1,4 @@
-EcmaScript v1.10.45343
+EcmaScript v1.10.46020
 
-- Add edgePerCycle attribute to the QuadratureDecoder
-- Add Example for Yocto-MaxiKnob
-- Fix TestHub timeout in case of non-responding IP address
-- Fix download of binary files in http mode
-- Fix missing documentation for isReadOnly() method.
-- Return YAPI_UNAUTHORIZED when http auth fails
+- Add support for missing measures in DataStream (returned as NaN) and skipping them in DataSet
+- Fix retrieval of module url within arrival callback

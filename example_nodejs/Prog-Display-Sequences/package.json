@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Prog-Display-Sequences example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.45343"
+    "yoctolib-es2017": "^1.10.46020"
   }
 }

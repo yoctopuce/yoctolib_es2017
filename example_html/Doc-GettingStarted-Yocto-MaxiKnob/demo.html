@@ -20,15 +20,15 @@
       // Setup the API to use the VirtualHub on local machine
       let errmsg = new YErrorMsg();
       if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
-      alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
-      return;
-    }
+        alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+        return;
+      }
       refresh();
     }
 
     function notefreq( note)
     {
-      return  (220.0 * Maths.Exp(note * Maths.Log(2) / 12));
+      return 220.0 * Math.exp(note * Math.log(2) / 12);
     }
 
     async function refresh()
@@ -42,9 +42,9 @@
         }
       }
       let buz    = YBuzzer.FindBuzzer(serial + ".buzzer");
-      let leds   = YColorLed.FindColorLed(serial + ".colorLed");
+      let leds   = YColorLedCluster.FindColorLedCluster(serial + ".colorLedCluster");
       let button = YAnButton.FindAnButton(serial + ".anButton1");
-      let qd     = YQuadraticDecoder.QuadraticDecoder(serial + ".quadraticDecoder1");
+      let qd     = YQuadratureDecoder.FindQuadratureDecoder(serial + ".quadratureDecoder1");
 
 	  if (!await button.isOnline() || !await qd.isOnline()) {
 	    document.write("Make sure the Yocto-MaxiKnob is configured with at least on AnButton and  one QuadratureDecoder");
@@ -72,7 +72,7 @@
           }
         }
       }
-      setTimeout(refresh, 100);
+      setTimeout(refresh, 10);
     }
 
     startDemo();

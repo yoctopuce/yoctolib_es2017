@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: svn_id $
+ *  $Id: demo.js 45543 2021-06-14 08:23:46Z web $
  *
  *  An example that show how to use a  Yocto-MaxiKnob
  *
@@ -14,7 +14,7 @@
 
 /*********************************************************************
  *
- *  $Id: svn_id $
+ *  $Id: demo.js 45543 2021-06-14 08:23:46Z web $
  *
  *  An example that show how to use a  Yocto-MaxiBuzzer
  *
@@ -34,13 +34,13 @@ require('yoctolib-es2017/yocto_buzzer.js');
 require('yoctolib-es2017/yocto_colorledcluster.js');
 require('yoctolib-es2017/yocto_quadraturedecoder.js');
 
-let buz, leds, button, qd,lastPos;
+let buz, leds, button, qd, lastPos;
 
 function notefreq( note)
- {
-   return  (220.0 * Math.exp(note * Math.log(2) / 12));
- }
-	
+{
+    return 220.0 * Math.exp(note * Math.log(2) / 12);
+}
+
 async function startDemo()
 {
     await YAPI.LogUnhandledPromiseRejections();
@@ -77,7 +77,7 @@ async function startDemo()
         console.log("Make sure the Yocto-MaxiKnob is configured with at least on AnButton and  one QuadratureDecoder");
         return;
     }
-    console.log("press   button #1 or turn  encoder #1 or hit Ctrl-C");
+    console.log("press button #1 or turn encoder #1 or hit Ctrl-C");
 
     refresh();
 }
@@ -104,7 +104,7 @@ async function refresh()
     } else {
         console.log('Module not connected');
     }
-    setTimeout(refresh, 100);
+    setTimeout(refresh, 10);
 }
 
 startDemo();
