@@ -1,6 +1,4 @@
-EcmaScript v1.10.47582
+EcmaScript v1.10.48220
 
-- Add support for YInputChain class
-- Improve documentation of YAPI.RegisterHub
-- Fix use of API over HTTPS
-- Fix non catched exceptions in get_progress(), get_progressMessage() and startUpdate() methods of YFirmwareUpdate class
+- Fix YSMS addText method
+- Fix search feature in HTML documentation
