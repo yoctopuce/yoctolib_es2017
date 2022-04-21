@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 45543 2021-06-14 08:23:46Z web $
+ *  $Id: demo.js 48374 2022-01-28 15:44:48Z mvuilleu $
  *
  *  An example that show how to use a  Yocto-I2C
  *
@@ -47,7 +47,7 @@ async function startDemo(args)
 
     if(await i2cPort.isOnline()) {
         // sample code reading MCP9804 temperature sensor
-        await i2cPort.set_i2cMode("400kbps");
+        await i2cPort.set_i2cMode("100kbps");
         await i2cPort.set_i2cVoltageLevel(YI2cPort.I2CVOLTAGELEVEL_3V3);
         await i2cPort.reset();
         // do not forget to configure the powerOutput of the Yocto-I2C
