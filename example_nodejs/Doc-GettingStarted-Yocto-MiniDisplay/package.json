@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-MiniDisplay example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.49504"
+    "yoctolib-es2017": "^1.10.49822"
   }
 }
