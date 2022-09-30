@@ -1,3 +1,3 @@
-EcmaScript v1.10.50357
+EcmaScript v1.10.51176
 
-- Add support for retrieving communication profiles list on YoctoHub-GSM-4G
+- Add support for new CORS-friendly HTTP authentication method
