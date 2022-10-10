@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Color-V2 example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.51176"
+    "yoctolib-es2017": "^1.10.51266"
   }
 }
