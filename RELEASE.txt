@@ -1,3 +1,4 @@
-EcmaScript v1.10.51266
+EcmaScript v1.10.52094
 
-- Add addFileToHTTPCallback methode to YModule
+- Add support for connecting to VirtualHub-4web
+- Fix caching issue with beacon state

@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Meteo example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.51266"
+    "yoctolib-es2017": "^1.10.52094"
   }
 }
