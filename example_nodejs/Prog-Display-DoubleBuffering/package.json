@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Prog-Display-DoubleBuffering example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.52094"
+    "yoctolib-es2017": "^1.10.53532"
   }
 }
