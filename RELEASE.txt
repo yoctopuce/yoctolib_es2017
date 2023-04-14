@@ -1,6 +1,4 @@
-EcmaScript v1.10.53532
+EcmaScript v1.10.54037
 
-- Add support for callbackTemplate and powerFactor
-- Improve YSerialPort, YSpiPort and I2cPort class
-- Fixes connexion to VirtualHub-4web
-- Fix a few typos in the doc
+- Add YInputCapture class
+- Change trivial accessors as immediate rather than async
