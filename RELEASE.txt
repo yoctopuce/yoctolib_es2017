@@ -1,4 +1,4 @@
-EcmaScript v1.10.54821
+EcmaScript v1.10.54852
 
 - Add support for YHub class
 - Fix documentation of YAPI class
