@@ -1,8 +1,8 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32717 2018-10-19 15:58:17Z seb $
+ *  $Id: demo.js 58172 2023-11-30 17:10:23Z martinm $
  *
- *  An example that show how to use a  Yocto-MaxiPowerRelay
+ *  An example that shows how to use a  Yocto-MaxiPowerRelay
  *
  *  You can find more information on our web site:
  *   Yocto-MaxiPowerRelay documentation:

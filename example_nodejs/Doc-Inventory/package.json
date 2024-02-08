@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-Inventory example",
   "dependencies": {
-    "yoctolib-es2017": "^1.10.54852"
+    "yoctolib-es2017": "^1.10.59271"
   }
 }

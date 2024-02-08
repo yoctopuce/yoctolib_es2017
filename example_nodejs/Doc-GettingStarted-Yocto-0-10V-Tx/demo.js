@@ -1,8 +1,8 @@
 /*********************************************************************
  *
- *  $Id: demo.js 32624 2018-10-10 13:23:29Z seb $
+ *  $Id: demo.js 58172 2023-11-30 17:10:23Z martinm $
  *
- *  An example that show how to use a  Yocto-0-10V-Tx
+ *  An example that shows how to use a  Yocto-0-10V-Tx
  *
  *  You can find more information on our web site:
  *   Yocto-0-10V-Tx documentation:

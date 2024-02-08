@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_buzzer.js"></script>
+  <script src="../../lib/yocto_colorledcluster.js"></script>
+  <script src="../../lib/yocto_anbutton.js"></script>
+  <script src="../../lib/yocto_rfidreader.js"></script>
+  
+  <script>
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS)
+       {
+         alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+         return;
+       }
+      refresh();
+    }
+
+    function writeln(str)
+      { para = document.createElement("p");
+        para.innerText = str;
+        document.body.appendChild(para);
+      }
+
+    async function refresh()
+    { let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        let reader = YRfidReader.FirstRfidReader();
+        if(reader) {
+          let module = await reader.module();
+          serial = await module.get_serialNumber();
+		  document.getElementById('serial').value = serial;
+        }
+      }
+      let buz    = YBuzzer.FindBuzzer(serial + ".buzzer");
+      let leds   = YColorLedCluster.FindColorLedCluster(serial + ".colorLedCluster");
+      let button = YAnButton.FindAnButton(serial + ".anButton1");
+      let reader     = YRfidReader.FindRfidReader(serial + ".reader");
+
+      await buz.set_volume(75)
+      await leds.set_rgbColor(0,1,0x000000)
+
+      tagList = await reader.get_tagIdList()
+      if (tagList.length<=0)
+        { setTimeout(refresh,250)
+          return
+        }
+
+      let tagId       = tagList[0]
+      let opStatus    = new YRfidStatus()
+      let options     = new YRfidOptions()
+      let taginfo     = await reader.get_tagInfo(tagId,opStatus)
+      let blocksize   = taginfo.get_tagBlockSize()
+      let  firstBlock = taginfo.get_tagFirstBlock()
+      writeln("Tag ID          = "+taginfo.get_tagId())
+      writeln("Tag Memory size = "+taginfo.get_tagMemorySize().toString()+" bytes")
+      writeln("Tag Block  size = "+taginfo.get_tagBlockSize().toString()+" bytes")
+
+     let data = await reader.tagReadHex(tagId, firstBlock, 3*blocksize, options, opStatus)
+     if (opStatus.get_errorCode()==YRfidStatus.SUCCESS)
+       {  writeln ("First 3 blocks  = "+data)
+          await leds.set_rgbColor(0,1,0x00FF00)
+          await buz.pulse(1000,100)
+      }
+     else
+      {  writeln("Cannot read tag contents ("+opStatus.get_errorMessage()+")")
+         await leds.set_rgbColor(0, 1, 0xFF0000)
+      }
+     await leds.rgb_move(0, 1, 0x000000, 200)
+     await YAPI.FreeAPI()
+     writeln("Reload the page to try again")
+
+    }
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+Place a RFID tag near the antenna
+</body>
+</html>

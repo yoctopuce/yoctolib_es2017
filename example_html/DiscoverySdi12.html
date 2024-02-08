@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_sdi12port.js"></script>
+  <script>
+    let sdi12Port;
+
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+        alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+      }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anySdi12 = YSdi12Port.FirstSdi12Port();
+        if(anySdi12) {
+          let module = await anySdi12.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      sdi12Port = YSdi12Port.FindSdi12Port(serial+'.sdi12Port');
+      if(await sdi12Port.isOnline()) {
+        
+        let singleSensor = await sdi12Port.discoverSingleSensor();
+        
+        document.getElementById('addr').value = await singleSensor.get_sensorAddress();
+        document.getElementById('proto').value = await singleSensor.get_sensorProtocol();
+        document.getElementById('vendor').value = await singleSensor.get_sensorVendor();
+        document.getElementById('model').value = await singleSensor.get_sensorModel();
+        document.getElementById('ver').value = await singleSensor.get_sensorVersion();
+        document.getElementById('numb').value = await singleSensor.get_sensorSerial();
+        let valSensor = await sdi12Port.readSensor((await singleSensor.get_sensorAddress()).toString(),"M",5000);
+        let result = '';
+        for (var i = 0; i < valSensor.length ; i++) {
+          if (await singleSensor.get_measureCount() > 1){
+            result += (await singleSensor.get_measureSymbol(i)) + ' : ' + valSensor[i].toString() + ' ' + 
+            (await singleSensor.get_measureUnit(i)) + ' ' + (await singleSensor.get_measureDescription(i)) + '\n';
+          }
+          else
+          {
+            result += valSensor[i].toString() +'\n';
+          }
+        }
+        document.getElementById('val').value = result;
+      }
+      setTimeout(refresh, 5000);
+    }
+
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial' readonly><br> 
+Sensor address : <input id='addr' readonly><br>
+Sensor SDI-12 compatibility : <input id='proto' readonly><br>
+Sensor company name : <input id='vendor' readonly><br>
+Sensor model number : <input id='model' readonly><br>
+Sensor version : <input id='ver' readonly><br>
+Sensor serial number : <input id='numb' readonly><br>
+<textarea id= 'val' rows="6" cols="60" readonly ></textarea>
+</body>
+</html>

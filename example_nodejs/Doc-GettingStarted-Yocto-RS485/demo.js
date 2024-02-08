@@ -1,8 +1,8 @@
 /*********************************************************************
  *
- *  $Id: demo.js 52208 2022-12-07 08:17:21Z mvuilleu $
+ *  $Id: demo.js 58172 2023-11-30 17:10:23Z martinm $
  *
- *  An example that show how to use a  Yocto-RS485
+ *  An example that shows how to use a  Yocto-RS485
  *
  *  You can find more information on our web site:
  *   Yocto-RS485 documentation:
