@@ -10,6 +10,8 @@
   <script src="../../lib/yocto_quadraturedecoder.js"></script>
   
   <script>
+    var first_run = true;
+    var lastPos = 0;
     async function startDemo()
     {
       await YAPI.LogUnhandledPromiseRejections();
@@ -18,65 +20,59 @@
       // Setup the API to use the VirtualHub on local machine
       let errmsg = new YErrorMsg();
       if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
-      alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
-      return;
-    }
+        alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+        return;
+      }
       refresh();
     }
 
     function notefreq( note)
     {
-      return  (220.0 * Math.exp(note * Math.log(2) / 12));
+      return 220.0 * Math.exp(note * Math.log(2) / 12);
     }
-
-    let lastPos = 0;
 
     async function refresh()
     {
-
       let serial = document.getElementById('serial').value;
       if(serial == '') {
         let buzzer = YBuzzer.FirstBuzzer();
         if(buzzer) {
           let module = await buzzer.module();
           serial = await module.get_serialNumber();
-		  document.getElementById('serial').value = serial;
         }
       }
       let buz    = YBuzzer.FindBuzzer(serial + ".buzzer");
       let leds   = YColorLedCluster.FindColorLedCluster(serial + ".colorLedCluster");
       let button = YAnButton.FindAnButton(serial + ".anButton1");
       let qd     = YQuadratureDecoder.FindQuadratureDecoder(serial + ".quadratureDecoder1");
-       
-	  await buz.set_volume(75);
-	 
-	  if  ((!await button.isOnline()) || (!await qd.isOnline()))
-	  { document.write("Make sure the Yocto-MaxiKnob is configured with at least on AnButton and  one QuadratureDecoder");
+
+	  if (!await button.isOnline() || !await qd.isOnline()) {
+	    document.write("Make sure the Yocto-MaxiKnob is configured with at least on AnButton and  one QuadratureDecoder");
 	    return;
       }
-	  
-	  
+      if (first_run) {
+        lastPos = parseInt(await qd.get_currentValue());
+        await buz.set_volume(75);
+        first_run = false;
+      }
+
 
       if (await buz.isOnline()) {
-        if (await button.get_isPressed() == YAnButton.ISPRESSED_TRUE)
-		  {
-		    lastPos = 0;
-            await qd.set_currentValue(0);
-            await buz.playNotes("'E32 C8");
-            await leds.set_rgbColor(0, 1, 0x000000);
-		  }
-		 else
-        {
-          let p = parseInt(await  qd.get_currentValue());
-          if (lastPos != p)
-          {
+        if (await button.get_isPressed() == YAnButton.ISPRESSED_TRUE) {
+          lastPos = 0;
+          await qd.set_currentValue(0);
+          await buz.playNotes("'E32 C8");
+          await leds.set_rgbColor(0, 1, 0x000000);
+        } else {
+          let p = parseInt(await qd.get_currentValue());
+          if (lastPos != p) {
             lastPos = p;
             await buz.pulse(notefreq(p), 100);
-            await leds.set_hslColor(0, 1, 0x00FF7f | (p & 0xff ) << 16);
+            await leds.set_hslColor(0, 1, 0x00FF7f | (p % 255) << 16);
           }
         }
-	   }  
-      setTimeout(refresh, 100);
+      }
+      setTimeout(refresh, 10);
     }
 
     startDemo();

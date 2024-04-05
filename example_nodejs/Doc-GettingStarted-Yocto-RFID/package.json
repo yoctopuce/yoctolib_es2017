@@ -1,0 +1,8 @@
+{
+  "name": "doc-gettingstarted-yocto-rfid",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce Doc-GettingStarted-Yocto-RFID example",
+  "dependencies": {
+    "yoctolib-es2017": "^1.10.60394"
+  }
+}

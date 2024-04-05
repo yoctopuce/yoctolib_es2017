@@ -1,3 +1,16 @@
-EcmaScript v1.10.59271
+EcmaScript v1.10.60394
 
-- test release
+- Add support for Yocto-RFID
+- Add new secondsBefore attribute to wakeUpSchedule
+- Add support for multiplier in InputCapture
+- Add YThreshold class
+- Add position indicator in SnoopingRecords
+- Add snoopMessagesEx function to serial communication classes
+- Remove conflict between YEventCallback
+- Fix a few typos
+- Fix warning about malformed XML comment
+- Fix parsing of float on host where the decimal separator is not '.''
+- Fix restart of logs when registering log callback for a second time
+- Fix log refresh on Firefox
+- Fix cache latency on method YSensor.loadCalibrationPoints()
+- Fix handling of long strings in many parse situations (including json_get_key)
