@@ -1,20 +1,3 @@
-EcmaScript v1.10.63797
+EcmaScript v1.10.64286
 
-(EcmaScript)- update for new spectralSensor attributes
-(Libs)- commit newly generated HTML doc files (in particular cmdline improvements)
-(Libs)- commit newly generated files
-(Libs)- commit newly generated spectralsensor class
-(Libs)- remove reference to Yocto-MaxiIO-V2
-(Libs)- fix many typos, work on PurePython support
-(Misc)- pic24config:Fix LabView doc generation (broken in march)
-(Misc)- usbconfig:work on PurePython generator
-(Misc)- Update manpage
-(Misc)- hidden:simply further websocket bug
-(Misc)- virtualhub-for-web:fix handling of timed reports for specific devices where functionYdx does not match function index
-(Misc)- stdapi:reduce yocto-led luminosity when USB communication is not active
-(Misc)- analog.yc:fix yocto-spectral API
-(Misc)- stdtypes:add color val
-(Misc)- httpsupport:add color val
-(Misc)- stdtypes:fix ColorCoord
-(Misc)- stdtypes:fix typo
-(Misc)- yoctolib/embeddedui:improve handling of firmware update on YoctoHubs
+- Add saveLedsConfigAtPowerOn() methods to YColorLed class
