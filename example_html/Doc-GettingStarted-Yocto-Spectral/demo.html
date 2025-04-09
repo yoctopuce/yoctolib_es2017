@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_colorSensor.js"></script>
+  <script>
+    let colorSensor;
+
+    async function startDemo()
+    {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if(await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+        alert('Cannot contact VirtualHub on 127.0.0.1: '+errmsg.msg);
+      }
+      refresh();
+    }
+
+    async function refresh()
+    {
+      let serial = document.getElementById('serial').value;
+      if(serial == '') {
+        // by default use any connected module suitable for the demo
+        let anyColor = YColorSensor.FirstColorSensor();
+        if(anyColor) {
+          let module = await anyColor.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      colorSensor = YColorSensor.FindColorSensor(serial+'.colorSensor');
+      if(await colorSensor.isOnline()) {
+        document.getElementById('msg').value = '';
+        await colorSensor.set_workingMode(0);
+        await colorSensor.set_estimationModel(0);
+
+        let color = await colorSensor.get_nearSimpleColor();
+        let hex =  await colorSensor.get_estimatedRGB().toString(16);
+        
+        document.getElementById('color').value = color;
+        document.getElementById('hex').value = hex;
+      } else {
+        document.getElementById('msg').value = 'Module not connected';
+      }
+      setTimeout(refresh, 500);
+    }
+
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial'>
+<input id='msg' style='color:red;border:none;' readonly><br>
+Near color : <input id='color' readonly><br>
+RGB HEX : <input id='hex' readonly><br>
+</body>
+</html>
