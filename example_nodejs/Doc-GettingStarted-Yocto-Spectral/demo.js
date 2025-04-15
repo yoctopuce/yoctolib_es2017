@@ -60,8 +60,8 @@ async function startDemo(args)
 
     if(await colorSensor.isOnline()) {
 
-        await colorSensor.set_workingMode(0);
-        await colorSensor.set_estimationModel(0);
+        await colorSensor.set_workingMode(YColorSensor.WORKINGMODE_AUTO);
+        await colorSensor.set_estimationModel(YColorSensor.ESTIMATIONMODEL_REFLECTION);
         
         let color = await colorSensor.get_nearSimpleColor();
         let hex =  (await colorSensor.get_estimatedRGB()).toString(16);

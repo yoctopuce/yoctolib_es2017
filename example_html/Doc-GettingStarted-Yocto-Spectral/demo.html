@@ -36,8 +36,8 @@
       colorSensor = YColorSensor.FindColorSensor(serial+'.colorSensor');
       if(await colorSensor.isOnline()) {
         document.getElementById('msg').value = '';
-        await colorSensor.set_workingMode(0);
-        await colorSensor.set_estimationModel(0);
+        await colorSensor.set_workingMode(YColorSensor.WORKINGMODE_AUTO);
+        await colorSensor.set_estimationModel(YColorSensor.ESTIMATIONMODEL_REFLECTION);
 
         let color = await colorSensor.get_nearSimpleColor();
         let hex =  await colorSensor.get_estimatedRGB().toString(16);

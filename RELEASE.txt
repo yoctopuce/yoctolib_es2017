@@ -1,3 +1,5 @@
-EcmaScript v1.11.654
+EcmaScript v1.11.5866
 
-- test build version
+- Bump minor version number to work around Windows limitation
+- Add ColorSensor class
+- Improve YPwmInput and ColorSensor classes
