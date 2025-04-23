@@ -1,4 +1,4 @@
-EcmaScript v1.11.5866
+EcmaScript v1.11.5971
 
 - Bump minor version number to work around Windows limitation
 - Add ColorSensor class
