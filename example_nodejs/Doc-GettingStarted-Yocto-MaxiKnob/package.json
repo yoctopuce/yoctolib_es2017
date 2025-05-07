@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-MaxiKnob example",
   "dependencies": {
-    "yoctolib-es2017": "^1.11.5971"
+    "yoctolib-es2017": "^1.11.6320"
   }
 }

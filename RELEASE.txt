@@ -1,5 +1,3 @@
-EcmaScript v1.11.5971
+EcmaScript v1.11.6320
 
-- Bump minor version number to work around Windows limitation
-- Add ColorSensor class
-- Improve YPwmInput and ColorSensor classes
+- Add documentation of YHub class
