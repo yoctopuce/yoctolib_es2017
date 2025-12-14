@@ -1,3 +1,4 @@
-EcmaScript v1.11.6320
+EcmaScript v1.11.10736
 
-- Add documentation of YHub class
+- Prevent setting passwords with unsupported characters (@ and /)
+- Fix search in HTML documentation
