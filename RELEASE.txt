@@ -1,4 +1,3 @@
-EcmaScript v1.11.10736
+EcmaScript v1.11.11632
 
-- Prevent setting passwords with unsupported characters (@ and /)
-- Fix search in HTML documentation
+- Add new DisplayLayer methods

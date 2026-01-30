@@ -3,6 +3,6 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Doc-GettingStarted-Yocto-Temperature example",
   "dependencies": {
-    "yoctolib-es2017": "^1.11.10736"
+    "yoctolib-es2017": "^1.11.11632"
   }
 }
