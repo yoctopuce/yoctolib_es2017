@@ -1,3 +1,5 @@
-EcmaScript v1.11.11632
+EcmaScript v1.11.12413
 
-- Add new DisplayLayer methods
+- Add error handling when sending SMS
+- Add registerSmsCallback support
+- Add example showing how to use SMS functions (Prog-SMS-Example)
