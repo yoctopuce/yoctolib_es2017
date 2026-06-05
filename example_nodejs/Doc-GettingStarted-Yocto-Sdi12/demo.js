@@ -1,11 +1,11 @@
 /*********************************************************************
  *
- *  $Id: demo.js 58172 2023-11-30 17:10:23Z martinm $
+ *  $Id: demo.js 72780 2026-04-17 08:44:18Z seb $
  *
  *  An example that shows how to use a  Yocto-SDI12
  *
  *  You can find more information on our web site:
- *   Yocto-RS232 documentation:
+ *   Yocto-SDI12 documentation:
  *      https://www.yoctopuce.com/EN/products/yocto-sdi12/doc.html
  *   EcmaScript API Reference:
  *      https://www.yoctopuce.com/EN/doc/reference/yoctolib-ecmascript-EN.html

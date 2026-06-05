@@ -1,5 +1,3 @@
-EcmaScript v1.11.12413
+EcmaScript v1.11.14544
 
-- Add error handling when sending SMS
-- Add registerSmsCallback support
-- Add example showing how to use SMS functions (Prog-SMS-Example)
+- Add support for new device firmware

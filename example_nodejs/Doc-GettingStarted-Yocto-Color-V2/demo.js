@@ -1,6 +1,6 @@
 /*********************************************************************
  *
- *  $Id: demo.js 58172 2023-11-30 17:10:23Z martinm $
+ *  $Id: demo.js 72780 2026-04-17 08:44:18Z seb $
  *
  *  An example that shows how to use a  Yocto-Color-V2
  *

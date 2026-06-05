@@ -2,11 +2,11 @@
  *
  *  $Id: svn_id $
  *
- *  An example that shows how to use a  Yocto-RFID-xxx
+ *  An example that shows how to use a  Yocto-RFID
  *
  *  You can find more information on our web site:
- *  Yocto-RFID-15693 documentation:
- *      https://www.yoctopuce.com/EN/products/yocto-rfid-15693/doc.html
+ *   Yocto-RFID documentation:
+ *      https://www.yoctopuce.com/EN/products/yocto-rfid/doc.html
  *   EcmaScript API Reference:
  *      https://www.yoctopuce.com/EN/doc/reference/yoctolib-ecmascript-EN.html
  *

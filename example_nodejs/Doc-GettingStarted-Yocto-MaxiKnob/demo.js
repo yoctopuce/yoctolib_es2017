@@ -1,8 +1,8 @@
 /*********************************************************************
  *
- *  $Id: demo.js 59853 2024-03-14 11:25:23Z seb $
+ *  $Id: demo.js 72780 2026-04-17 08:44:18Z seb $
  *
- *  An example that show how to use a  Yocto-MaxiKnob
+ *  An example that shows how to use a  Yocto-MaxiKnob
  *
  *  You can find more information on our web site:
  *   Yocto-MaxiKnob documentation:
