@@ -1,3 +1,5 @@
-EcmaScript v1.11.14699
+EcmaScript v1.11.14868
 
-- Add support for new RFID tags
+- Update ws dependency
+- Fix backward-compatible handling of json_get_array (for RFID reader)
+- Fix password verification code
