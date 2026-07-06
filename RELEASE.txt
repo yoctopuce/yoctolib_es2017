@@ -1,5 +1,3 @@
-EcmaScript v1.11.14868
+EcmaScript v1.11.15129
 
-- Update ws dependency
-- Fix backward-compatible handling of json_get_array (for RFID reader)
-- Fix password verification code
+- Add NFC encoding support to YRfidReader class
