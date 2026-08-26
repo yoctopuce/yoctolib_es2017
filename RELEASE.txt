@@ -1,3 +1,9 @@
-EcmaScript v1.11.15129
+EcmaScript v1.11.15681
 
-- Add NFC encoding support to YRfidReader class
+- Add support for large text commands via upload
+- Add methods to control ePaper fast refresh policy
+- Add XY-MODEM upload support
+- Add GIF encoding to the library for efficient pixmap upload
+- Fix handling of display dimensions when orientation is changed
+- Fix encoding for triggerForcedCalibration() argument
+- Bump version to 2.1

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_display.js"></script>
+  <script>
+    var disp,l0;
+    var w,h, middleX,middleY,paneltype;
+
+    async function startDemo()
+      {
+      await YAPI.LogUnhandledPromiseRejections();
+      await YAPI.DisableExceptions();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if (await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+        alert('Cannot contact VirtualHub on 127.0.0.1: ' + errmsg.msg);
+        return
+      }
+
+      // Select specified device, or use first available one
+      let serial = document.getElementById('serial').value;
+      if (serial == '') {
+        // by default use any connected module suitable for the demo
+        let anydiplay = YDisplay.FirstDisplay();
+        if (anydiplay) {
+          let module = await anydiplay.module();
+          serial = await module.get_serialNumber();
+          document.getElementById('serial').value = serial;
+        }
+      }
+      disp = YDisplay.FindDisplay(serial + ".display");
+
+    // Makes sure the Panel type is set
+    paneltype = await disp.get_displayPanel();
+    if (paneltype== "NOT_SET")
+      { alert( "Use the virtual to configure the panel first");
+        return;
+      }
+
+    // retrieve the display size
+    w = await disp.get_displayWidth();
+    h = await disp.get_displayHeight();
+    middleX = parseInt(w / 2);
+    middleY = parseInt(h / 2);
+    document.getElementById('msg').innerText = "Panel: " + paneltype + " " + w + "x" + h+ "pixels";
+
+    //clean up
+    await disp.resetAll();
+    await disp.regenerateDisplay();  // makes sure the next refresh will be a full one
+
+    // retrieve the first layer
+    l0 = await disp.get_displayLayer(0);
+    await  l0.selectFont("medium.yfm");
+    refresh();
+    }
+
+  async function refresh()
+    {
+      let errmsg = new YErrorMsg();
+      const colors =  [0xFFFFFF, 0x000000, 0xFF0000, 0xFFFF00 ];
+      if (await disp.isOnline())
+        { // prevent refreshing for max 2 sec
+          await disp.postponeRefresh(2000);
+          await l0.clear();
+          // draw a few circles
+          for (var i = 0; i < 15; i++)
+           {
+             let  cx = Math.floor(Math.random()* w);
+             let  cy = Math.floor(Math.random() *h)
+             let   r = Math.floor((h / 20) + Math.random() *(h / 10));
+             await l0.selectFillColor(colors[Math.floor(Math.random()* 4)]);
+             await l0.drawDisc(cx, cy, r);
+             await l0.drawCircle(cx, cy, r);
+           }
+          // draw a rectangle with panel type in it
+          await l0.selectFillColor(0xffffff);
+          await l0.drawBar(middleX - 75, middleY - 10, middleX + 75, middleY + 12);
+          await l0.drawRect(middleX - 75, middleY - 10, middleX + 75, middleY + 12);
+          await l0.drawText(middleX, middleY, YDisplayLayer.ALIGN_CENTER, paneltype);
+          // forces a full refresh only the 1rst time
+
+          await disp.triggerRefresh(); // display is allowed to refresh  again
+          await YAPI.Sleep(1000, errmsg);
+          // if no fast refresh available, don't even try to run animations
+          if (paneltype.indexOf("KS") >=  0)  setTimeout(refresh, 5);
+        } else document.getElementById('msg').innerText ='Module not connected';
+    }
+
+    startDemo();
+  </script>
+</head>
+<body>
+
+Module to use:     <input id='serial'><br>
+<span id='msg'></span><br>
+</body>
+</html>
