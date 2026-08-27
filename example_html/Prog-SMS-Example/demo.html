@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <script src="../../lib/yocto_api.js"></script>
+  <script src="../../lib/yocto_messagebox.js"></script>
+  <script>
+    var mbox;
+
+    async function startDemo() {
+      await YAPI.LogUnhandledPromiseRejections();
+
+      // Setup the API to use the VirtualHub on local machine
+      let errmsg = new YErrorMsg();
+      if (await YAPI.RegisterHub('127.0.0.1', errmsg) != YAPI.SUCCESS) {
+        alert('Cannot contact VirtualHub on 127.0.0.1: ' + errmsg.msg);
+        return;
+      }
+
+      // use any connected module suitable for the demo
+      mbox = YMessageBox.FirstMessageBox();
+      if(mbox) {
+        let module = await mbox.module();
+        let serial = await module.get_serialNumber();
+        document.getElementById('serial').value = serial;
+      } else {
+        alert('No YoctoHub GSM found');
+        return;
+      }
+
+      // show existing messages on the SIM card
+      var messages = await mbox.get_messages()
+      if(!messages.length) {
+        document.getElementById('sim_messages').innerHTML = 'No messages found';
+      } else {
+        for(let sms of messages) {
+          document.getElementById('sim_messages').innerHTML +=
+            '- Message dated ' + await sms.get_timestamp() + '\n'+
+            '  from ' + await sms.get_sender() + '\n'+
+            '  "' + await sms.get_textData() + '"\n';
+        }
+      }
+
+      // register callback for incoming messages
+      mbox.registerSmsCallback(smsCallback);
+    }
+
+    async function smsCallback(mbox, sms)
+    {
+      document.getElementById('new_messages').innerHTML +=
+          '- New message dated ' + await sms.get_timestamp() + '\n'+
+          '  from ' + await sms.get_sender() + '\n'+
+          '  "' + await sms.get_textData() + '"\n';
+      await sms.deleteFromSIM();
+    }
+
+    window.send_sms = function()
+    {
+      var dest = document.getElementById('smsDest').value;
+      var text = document.getElementById('smsText').value;
+      mbox.sendTextMessage(dest, text);
+    };
+
+    startDemo();
+  </script>
+</head>
+<body>
+Module to use: <input id='serial'><br>
+Messages on SIM card:<br>
+<textarea id="sim_messages" cols=60 rows=10></textarea><br>
+<br>
+You can send a new message:<br>
+<table>
+<tr><td>Recipient:</td><td><input id="smsDest" placeholder="+xxxxxxxxxx"></td></tr>
+<tr><td>Message text:</td><td><input id="smsText" placeholder="say something"></td></tr>
+<tr><td><button onclick='javascript:send_sms()'>Send SMS</button></td></tr>
+</table><br>
+Newly received messages:<br>
+<textarea id="new_messages" cols=60 rows=10></textarea>
+</body>
+</html>

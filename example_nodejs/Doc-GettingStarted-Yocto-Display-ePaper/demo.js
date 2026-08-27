@@ -1,12 +1,12 @@
 /*********************************************************************
  *
- *  $Id: svn_id $
+ *  $Id: demo.js 58233 2023-12-04 10:57:58Z seb $
  *
- *  An example that shows how to use a  Yocto-Display-ePaper
+ *  An example that shows how to use a  Yocto-Display
  *
  *  You can find more information on our web site:
- *   Yocto-Display-ePaper documentation:
- *      https://www.yoctopuce.com/EN/products/yocto-display-epaper/doc.html
+ *   Yocto-Display documentation:
+ *      https://www.yoctopuce.com/EN/products/yocto-display/doc.html
  *   EcmaScript API Reference:
  *      https://www.yoctopuce.com/EN/doc/reference/yoctolib-ecmascript-EN.html
  *

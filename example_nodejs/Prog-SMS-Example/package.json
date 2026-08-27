@@ -1,0 +1,8 @@
+{
+  "name": "prog-sms-example",
+  "author": "Yoctopuce",
+  "description": "Yoctopuce SMS sending example",
+  "dependencies": {
+    "ws": "^8.21.0"
+  }
+}

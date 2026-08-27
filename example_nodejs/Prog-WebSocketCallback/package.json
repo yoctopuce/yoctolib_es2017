@@ -3,7 +3,7 @@
   "author": "Yoctopuce",
   "description": "Yoctopuce Prog-WebSocketCallback example",
   "dependencies": {
-    "ws": "^6.2.1",
-    "yoctolib-es2017": "^1.11.15703"
+    "ws": "^8.21.0",
+    "yoctolib-es2017": "^2.1.15726"
   }
 }

@@ -1,19 +1,5 @@
 /*********************************************************************
  *
- *  $Id: svn_id $
- *
- *  An example that shows how to use a  Yocto-Spectral
- *
- *  You can find more information on our web site:
- *   Yocto-Spectral documentation:
- *      https://www.yoctopuce.com/EN/products/yocto-spectral/doc.html
- *   EcmaScript API Reference:
- *      https://www.yoctopuce.com/EN/doc/reference/yoctolib-ecmascript-EN.html
- *
- *********************************************************************/
-
-/*********************************************************************
- *
  *  $Id: demo.js 58233 2023-12-04 10:57:58Z seb $
  *
  *  An example that shows how to use a  Yocto-Spectral
@@ -68,7 +54,6 @@ async function startDemo(args)
         
         console.log("Near color : " + color + "\n");
         console.log("RGB HEX : " + hex + "\n");
-
     } else {
         console.log("Module not connected (check identification and USB cable)\n");
     }

@@ -40,7 +40,7 @@
         await colorSensor.set_estimationModel(YColorSensor.ESTIMATIONMODEL_REFLECTION);
 
         let color = await colorSensor.get_nearSimpleColor();
-        let hex =  await colorSensor.get_estimatedRGB().toString(16);
+        let hex =  (await colorSensor.get_estimatedRGB()).toString(16);
         
         document.getElementById('color').value = color;
         document.getElementById('hex').value = hex;
@@ -60,3 +60,4 @@ Near color : <input id='color' readonly><br>
 RGB HEX : <input id='hex' readonly><br>
 </body>
 </html>
+
