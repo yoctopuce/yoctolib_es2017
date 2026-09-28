@@ -1,3 +1,4 @@
-EcmaScriptV2 v2.1.15726
+EcmaScriptV2 v2.1.16087
 
-- Bump version number
+- Add XY-MODEM upload support
+- Fix documentation

@@ -4,6 +4,6 @@
   "description": "Yoctopuce Prog-WebSocketCallback example",
   "dependencies": {
     "ws": "^8.21.0",
-    "yoctolib-es2017": "^2.1.15726"
+    "yoctolib-es2017": "^2.1.16087"
   }
 }
